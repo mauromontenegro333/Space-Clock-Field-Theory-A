@@ -1,25 +1,23 @@
 # Suggested Zenodo metadata
 
-**Title**  
-Reproducibility data and exact algebra checks for “Space-Clock Field Theory: A Single-Metric Theory of Dark-Sector Unification”
+**Title:** Reproducibility data and exact checks for the SCFT-A intrinsic spatial curvature completion
 
-**Creator**  
-Mauro Alfonso Montenegro
+**Creator:** Mauro Alfonso Montenegro
 
-**Affiliation**  
-Independent researcher, Austin, Texas, USA
+**Resource type:** Dataset / Software
 
-**Resource type**  
-Dataset with research software
+**Version:** 2026-09-08-curvature-completion
 
-**Description**  
-This record contains the 8 September 2026 integrated manuscript snapshot, the numerical data and Python implementation supporting its retained base-action S0 background and finite-wavelength calculations, and exact symbolic checkers for the completed local transition. The numerical archive contains the five reference modes, the full 42-mode scan over 0.03 <= k/H_d <= 1000, source-free and matter-loaded backgrounds, and two tighter-tolerance refinement runs. The completed-action reports contain 14 and 54 exact algebraic checks. The numerical transfer results apply to S0 and are not completed-action perturbation predictions. The algebraic reports do not prove the loss-free nonlinear energy estimate or global constraint compatibility; full inhomogeneous nonlinear Rank-1 continuation remains conditional.
+**License:** CC0 1.0 Universal
 
-**Keywords**  
-Space-Clock Field Theory; clock field; modified gravity; dark-sector unification; finite-wavelength perturbations; Rank-1 constraints; numerical reproducibility
+## Description
 
-**Related publication**  
-Space-Clock Field Theory: A Single-Metric Theory of Dark-Sector Unification
+Current reproducibility package for the intrinsic-spatial-curvature completion of Space-Clock Field Theory (SCFT-A). The package adds the `-eta_R (^(3)R)^2` completion with `eta_R H_d^2 = 1/240` at the stated benchmark, stores the 16 exact symbolic checks and endpoint certificate, reconstructs the matter-loaded background, and contains all 42 fine linear-response modes together with convergence and independent-integrator comparisons.
 
-**License**  
-Select a license before publishing the Zenodo record. No license has been assigned by this package.
+The decimal `delta` value is inherited from the supplied manuscript source and is not a newly certified global minimization; the exact endpoint sign proof covers `0 < delta < 10^-6` independently of that decimal approximation. The package does not claim global matter-loaded nonlinear stability, a CMB likelihood, a primordial Boltzmann spectrum, nonlinear galaxy matching, a full matter strong-coupling scale, or a quantum completion.
+
+The pre-completion base-action `S_0` repository state is preserved separately on the Git branch `legacy-s0-2026-09-08` and should not be substituted for the completed-action observables on `main`.
+
+## Keywords
+
+Space-Clock Field Theory; SCFT-A; clock field; modified gravity; intrinsic spatial curvature; cosmological perturbations; exact symbolic checks; reproducibility
