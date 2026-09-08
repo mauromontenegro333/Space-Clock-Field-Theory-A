@@ -1,29 +1,75 @@
 {
-  "package_validation": true,
-  "manuscript_pages": 92,
-  "manuscript_pdf_sha256": "4ec5ee2d3646fa87a61416df07ba1b9f96619b68eeb6a3f203c45a92c6d1a556",
-  "manuscript_tex_sha256": "9d2ed9c48d51f3909a78480afc2ebdabad94175476e8f1d42df7b228480d51eb",
-  "reference_background_shape": [
-    20001,
-    24
+  "validated_on": "2026-09-08",
+  "generator": "scft_curvature_completion.py",
+  "environment": {
+    "python": "3.12",
+    "numpy": "2.3.5"
+  },
+  "exact_checks_passed": 16,
+  "all_exact_checks_passed": true,
+  "number_modes": 42,
+  "background_shape": [
+    8001,
+    9
   ],
-  "sourcefree_background_shape": [
-    4001,
-    24
+  "response_summary_shape": [
+    42,
+    11
   ],
-  "refinement_background_shape": [
-    40001,
-    24
+  "npz_shapes": {
+    "N": [
+      1001
+    ],
+    "k": [
+      42
+    ],
+    "values": [
+      42,
+      1001,
+      15
+    ]
+  },
+  "scientific_file_sha256": {
+    "scft_curvature_completion.py": "923515687a9ac1016860c57ac8087e447a7a678f04fab128fbbef1072401a253",
+    "coupling_input.json": "0c031e975d53e9f396e5188ebc1cf59bf953b5f48d0e1d4294063e7068264d12",
+    "exact_checks.json": "a46387ce077ac0468059fa6b946da29df025060dd18236a7b5f7a8e08378a469",
+    "numerical_summary.json": "cd3023997352fb26594ae90d9f0b4aace3a33d6c8288ff2884c3214ced693939",
+    "loaded_background.csv": "43526336f18f4b86da8eb831cc5719ddc75433e25f8f904e91a9687f5c5fcbec",
+    "endpoint_spectrum.csv": "0b060d236b24f1c10222ff156b8573543b11bc06d68da50cf09aad30b81fd84b",
+    "response_summary.csv": "5c3d73cf2d3f8a480fe70d1795e9878324cb6f18058225a3cd39bd86ae3ef46d",
+    "response_00.csv": "55332f505c9b970a1ca07822f464616816ce4fa894c10ff3f641ca4b3b967a91",
+    "response_24.csv": "1325964eaf6de2a703bd963ca1473d943ea77c7f512571ada31a53ff000bd724",
+    "response_30.csv": "64b19e158f5e01212497011f64b7a91ae3575f2acc8c78b3cacfab169cee87cd",
+    "response_35.csv": "ca46046b55189cef217b46f0491242484c3655031c827c3d0beb75bf5d289bd1",
+    "response_38.csv": "725f3aaac9e5ff981d6c25f89a8c2d06ecc54ddc8e6a4ff11848bda5d6fe118b",
+    "response_41.csv": "676430e577aa9fd8af6707483d8717cef5a911b44d306dd4827b756a0652a3c6",
+    "all_responses.npz": "dd5df5e9e719ab8459dadb00df650f00eda55df1a182126b947b1c8f49cb20ed",
+    "inherited_background_figure.csv": "ee95e5a21fd3f643056b343b5af5a95e16609937c70afeed1633368029bb5783"
+  },
+  "max_observable_response": 1.0463168638938607,
+  "max_channel_refinement": 2.130491537854183e-11,
+  "max_pointwise_refinement": 2.130491537854183e-11,
+  "max_residuals": [
+    2.692969716547529e-16,
+    1.7143946852427039e-18,
+    4.47582797241013e-18
   ],
-  "reference_modes": 5,
-  "scan_modes": 42,
-  "refinement_modes": [
-    "10.0",
-    "362.0291470135738"
+  "background_residual": 4.8722137239064966e-14,
+  "independent_integrators": [
+    {
+      "k_Hd": 0.03,
+      "channel_discrepancy": 9.365511838277385e-13
+    },
+    {
+      "k_Hd": 10.0,
+      "channel_discrepancy": 2.8947113803190483e-15
+    },
+    {
+      "k_Hd": 1000.0,
+      "channel_discrepancy": 9.413353993861784e-12
+    }
   ],
-  "completed_action_exact_checks": "14/14 passed",
-  "rank1_local_exact_checks": "54/54 passed",
-  "floating_point_used_in_exact_checks": false,
-  "duplicate_and_superseded_files_excluded": true,
-  "proof_scope": "Exact algebra checks do not establish full inhomogeneous nonlinear Rank-1 closure."
+  "legacy_branch": "legacy-s0-2026-09-08",
+  "reproduction_note": "The supplied package reproduced byte-for-byte in the local verification environment. GitHub Actions independently regenerated the package with the pinned library versions and validated the stated numerical results to 1e-10 relative tolerance because binary64 solver output can differ in last digits across platforms.",
+  "scope_note": "This validation does not extend the physical proof beyond the scope stated in README.md and PROVENANCE.json."
 }

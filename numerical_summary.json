@@ -1,0 +1,29 @@
+{
+  "delta_num": "8.083543068174995e-60",
+  "delta_evaluation": "Inherited uncertified numerical evaluation from supplied TeX; no new extrema certificate. Exact endpoint proof covers the entire allowed interval.",
+  "eta_Hd_squared": "1/240",
+  "number_modes": 42,
+  "max_observable_response": 1.0463168638938607,
+  "max_channel_refinement": 2.130491537854183e-11,
+  "max_pointwise_refinement": 2.130491537854183e-11,
+  "max_residuals": [
+    2.692969716547529e-16,
+    1.7143946852427039e-18,
+    4.47582797241013e-18
+  ],
+  "background_residual": 4.8722137239064966e-14,
+  "independent_integrators": [
+    {
+      "k_Hd": 0.03,
+      "channel_discrepancy": 9.365511838277385e-13
+    },
+    {
+      "k_Hd": 10.0,
+      "channel_discrepancy": 2.8947113803190483e-15
+    },
+    {
+      "k_Hd": 1000.0,
+      "channel_discrepancy": 9.413353993861784e-12
+    }
+  ]
+}
