@@ -1,105 +1,79 @@
-# SCFT current manuscript data and code
+# SCFT-A intrinsic spatial curvature completion
 
-This archive accompanies the 8 September 2026 integrated manuscript:
+This repository contains the current reproducibility package for the intrinsic-spatial-curvature completion of Space-Clock Field Theory (SCFT-A).
 
-**Space-Clock Field Theory: A Single-Metric Theory of Dark-Sector Unification**  
-Mauro Alfonso Montenegro
+The pre-completion base-action `S_0` repository state has been preserved on the branch `legacy-s0-2026-09-08`. Files on `main` are the current curvature-completed calculation package and should not be mixed with the older `S_0` finite-wavelength outputs.
 
-The package contains only files still used by, quoted in, or required to reproduce retained calculations in the current 92-page manuscript. Exact duplicates, older manuscript assembly scripts, obsolete action repairs, external copies of figures already embedded in the LaTeX source, and build logs have been excluded.
+## Exact action addition and positive result
 
-## Scientific scope
+The completed action adds
 
-The package separates two scopes that must not be conflated:
+`- eta_R (^(3)R)^2`
 
-1. `data/` and `scripts/scft_audit.py` support the retained **base-action `S_0`** homogeneous and finite-wavelength results. The current manuscript labels those figures, transfer functions, and mode scans as `S_0` calculations. They are not finite-momentum predictions of the completed spatial action.
-2. `scripts/scft_completion_checks.py`, `scripts/scft_rank1_checks.py`, and `checks/` support exact algebraic identities for the **completed local transition**. They establish the reported quadratic and auxiliary algebra. They do not prove the loss-free nonlinear energy estimate or global constraint compatibility. Full inhomogeneous nonlinear Rank-1 continuation remains conditional.
+inside the `M_Pl^2/2` action bracket, with
 
-`FILE_STATUS.csv` gives the scope and role of each file group. `DATA_DICTIONARY.md` defines all stored columns and summary fields. `PROVENANCE.json` records the environment and proof-status boundary.
+`eta_R = 1/(2 kappa_m)`.
 
-## Contents
+For `kappa_m/H_d^2 = 120`,
 
-- `manuscript/SCFT_Integrated.tex` — standalone LaTeX source with vector plot coordinates and source-code blocks embedded.
-- `manuscript/SCFT_Integrated.pdf` — verified 92-page PDF.
-- `scripts/scft_audit.py` — primary `S_0` numerical implementation.
-- `scripts/reproduce_runs.py` — portable launcher for the four stored numerical profiles.
-- `scripts/export_modes_csv.py` — precision-preserving NPZ exporter.
-- `scripts/scft_completion_checks.py` — 14 exact completed-action checks.
-- `scripts/scft_rank1_checks.py` — 54 exact local-transition checks.
-- `scripts/historical_base_check/scft_local_vacuum_check.py` — appendix-level historical base diagnostic, explicitly not a completed-action check.
-- `data/reference/` — 20,001-point matter-loaded background, five reference modes, and summary.
-- `data/sourcefree/` — 4,001-point source-free background.
-- `data/scan/` — complete 42-mode scan arrays and summary.
-- `data/refinement/` — 40,001-point background, two tighter-tolerance modes, and convergence differences.
-- `data/validation/` — refined extrema, regulator values, and one saved historical symbolic-result record.
-- `checks/` — saved exact-check reports.
+`eta_R H_d^2 = 1/240`.
 
-The reference and scan runs use the same stored 20,001-point background. Its exact duplicate was omitted.
+The new scalar restoring contribution is `+8 eta_R p^4`.
 
-## Python environment
+The exact endpoint proof covers every `p^2 > 0` and the entire interval `0 < delta < 10^-6`. It establishes `D_d > 0`, `K_d > 0`, `V_d > 0`, and `V_d(120)/H_d^2 > 460`. All 16 implemented exact checks pass. The source-free local-transition and exact Minkowski results remain positive. This endpoint statement does not prove global matter-loaded nonlinear stability.
 
-The recorded environment is Python 3.12.13 with NumPy 2.3.5, SciPy 1.17.0, and SymPy 1.14.0.
+## Reproduce
+
+Python 3 with NumPy, SciPy, and SymPy is required.
 
 ```bash
-python -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
+python3 scft_curvature_completion.py --output reproduced_results
 ```
 
-## Run the exact algebra checks
+The script reruns the 16 exact checks, reconstructs the loaded background, evolves all 42 modes at two resolutions, performs three independent RK45 comparisons, and writes the current numerical products. Results may differ in the last printed binary64 digits across platforms.
 
-From the extracted package root:
+No observational input or online data is required.
 
-```bash
-python scripts/run_exact_checks.py --output exact_check_rerun
-```
+## Numerical conventions
 
-Expected results are `14/14` and `54/54`. These use symbolic/exact arithmetic and report `floating_point_used: false`.
+The dimensionless numerical equations use `H_d = M_Pl = 1`. This does **not** assert the physical ratio `H_d/M_Pl = 1`.
 
-## Reproduce the base-action numerical profiles
+The numerical response interval is `1 <= a <= 10`, with 1001 common output times. The loaded background contains 8001 nodes.
 
-Each command writes into a new output directory and refuses to overwrite an existing profile directory.
+The inherited decimal value of `delta` in `coupling_input.json` is an uncertified numerical evaluation printed in the supplied SCFT-A source. It is not a newly certified global minimization, and no decimal approximation enters the exact endpoint sign proof.
 
-```bash
-python scripts/reproduce_runs.py reference --output rerun
-python scripts/reproduce_runs.py scan --output rerun
-python scripts/reproduce_runs.py refinement --output rerun
-python scripts/reproduce_runs.py sourcefree --output rerun
-```
+## Files
 
-To run all four profiles and reconstruct the refinement-difference report:
+- `scft_curvature_completion.py` — complete generator for the current exact checks and numerical response package.
+- `exact_checks.json` — 16 executed exact checks and symbolic endpoint formulas.
+- `numerical_summary.json` — convergence, residual, response-maximum, and independent-integrator summary.
+- `coupling_input.json` — inherited decimal input and its provenance.
+- `loaded_background.csv` — 8001-node reconstructed matter-loaded background.
+- `endpoint_spectrum.csv` — corrected endpoint kinetic/restoring spectrum used for plotting.
+- `response_summary.csv` — summary of all 42 modes.
+- `response_00.csv`, `response_24.csv`, `response_30.csv`, `response_35.csv`, `response_38.csv`, `response_41.csv` — representative fine-response time series.
+- `all_responses.npz` — all 42 fine responses; `values.shape == (42, 1001, 15)`.
+- `inherited_background_figure.csv` — unchanged broad-range homogeneous figure coordinates extracted from the supplied TeX; not recomputed by the current response script.
+- `DATA_DICTIONARY.md` — field and column definitions.
+- `FILE_STATUS.csv` — scientific scope and role of each retained file.
+- `PROVENANCE.json` — package provenance and proof-status boundary.
+- `VALIDATION_REPORT.json` — reproduction and validation summary for this repository update.
+- `MANIFEST_SHA256.txt` — SHA-256 manifest for the retained reproducibility package files.
 
-```bash
-python scripts/reproduce_runs.py all --output complete_rerun
-```
+## NPZ layout
 
-The scan and refinement integrations can take substantial computation time. Platform and library differences may affect the last binary64 digits and solver work counts.
+`all_responses.npz` contains:
 
-## Export NPZ mode data to CSV
+- `N` — `ln(a)`, 1001 samples.
+- `k` — 42 wavenumbers in units of `H_d`.
+- `values` — shape `(42, 1001, 15)` with columns
+  `[zeta_observable, Phi_N, Psi_N, delta_b_N, delta_gamma_N, delta_nu_N, zeta, u, delta_b, delta_gamma, delta_nu, vartheta_b, vartheta_gamma, vartheta_nu, alpha]`.
 
-```bash
-python scripts/export_modes_csv.py data/scan/scft_modes.npz exported_scan_csv
-```
+The first six columns are the observable set used in the stored response maximum. The repeated `zeta` is intentional.
 
-The exporter prints 18 digits after the decimal point so stored binary64 values round-trip through text.
+## Scope limits
 
-## Compile the manuscript
+The package does not provide a CMB likelihood, primordial Boltzmann spectrum, nonlinear galaxy matching, a full matter strong-coupling scale, or a quantum completion. A maximum over the 1001 sampled output times is not a certified continuum maximum. The initial vector is a unit baryon-density response used for linear transfer calculations, not a claim of a physical primordial perturbation of unit amplitude; physical small initial amplitudes rescale the linear response.
 
-Install a TeX distribution containing REVTeX 4.2, PGFPlots, Latin Modern, and the packages declared in the source. Then run:
-
-```bash
-python scripts/build_manuscript.py --output manuscript_build
-```
-
-The script runs pdfLaTeX three times. The LaTeX source also writes embedded Python sources through `filecontents*` when compiled.
-
-## Integrity check
-
-```bash
-python scripts/verify_package.py
-```
-
-This validates `MANIFEST_SHA256.txt`, stored schemas, scan keys, and exact-check report counts.
-
-## Interpretation limits
-
-The mode integrations use minimally coupled barotropic baryon, photon, and neutrino perfect fluids. They are not a recombination calculation, collisionless-neutrino hierarchy, CMB or matter-power likelihood analysis, or completed-action perturbation scan. Numerical outputs are binary64 approximations; printed decimal digits do not make them exact mathematical constants.
-
-No license has been assigned. Select an appropriate license in Zenodo before publishing.
+The old base-action `S_0` numerical products remain recoverable from `legacy-s0-2026-09-08` and must not be substituted for the curvature-completed observables on `main`.
