@@ -1,17 +1,25 @@
 path,scope,role
-manuscript/SCFT_Integrated.tex,current manuscript,standalone LaTeX source; embeds vector plots and four checker/solver sources
-manuscript/SCFT_Integrated.pdf,current manuscript,verified 92-page rendering
-scripts/scft_audit.py,base action S_0,primary background and finite-wavelength solver
-scripts/reproduce_runs.py,base action S_0,portable reference/scan/refinement/source-free runner
-scripts/export_modes_csv.py,utility,precision-preserving NPZ exporter
-scripts/scft_completion_checks.py,completed action,exact auxiliary and quadratic algebra checks
-scripts/scft_rank1_checks.py,completed action,exact local Rank-1 identities and positivity algebra checks
-scripts/historical_base_check/scft_local_vacuum_check.py,historical base diagnostic,retained appendix diagnostics; not a check of the adopted completed action
-data/reference/*,base action S_0,"loaded background, five reference modes, summary"
-data/sourcefree/*,base action S_0,source-free background
-data/scan/*,base action S_0,42-mode scan arrays and summary
-data/refinement/*,base action S_0,"tighter-tolerance background, two modes, differences"
-data/validation/refined_background.json,base action S_0,refined extrema quoted in manuscript
-data/validation/regulator_checks.json,base action S_0,regulator values quoted in retained EFT section
-data/validation/symbolic_checks_saved_record.json,saved record only,generator unavailable; not an executable proof
-checks/*,completed action,saved reports from 14 and 54 exact checks
+README.md,current package,repository documentation and reproduction instructions
+LICENSE,repository,CC0 1.0 Universal license retained from the prior repository state
+CITATION.cff,current package,citation metadata
+requirements.txt,current package,pinned Python dependencies
+scft_curvature_completion.py,current completed action,exact certificate plus 42-mode numerical response generator
+coupling_input.json,current completed action,inherited decimal coupling input and exact coefficient provenance
+exact_checks.json,current completed action,16 exact symbolic checks and endpoint certificate
+numerical_summary.json,current completed action,numerical convergence residual and integrator-comparison summary
+loaded_background.csv,current completed action,8001-node reconstructed loaded background
+endpoint_spectrum.csv,current completed action,corrected endpoint kinetic and restoring spectrum
+response_summary.csv,current completed action,42-mode response summary
+response_00.csv,current completed action,representative fine response mode 0
+response_24.csv,current completed action,representative fine response mode 24
+response_30.csv,current completed action,representative fine response mode 30
+response_35.csv,current completed action,representative fine response mode 35
+response_38.csv,current completed action,representative fine response mode 38
+response_41.csv,current completed action,representative fine response mode 41
+all_responses.npz,current completed action,all 42 fine responses shape 42x1001x15
+inherited_background_figure.csv,inherited figure data,broad-range homogeneous figure coordinates extracted from supplied TeX and not recomputed here
+DATA_DICTIONARY.md,current package,column and field definitions
+PROVENANCE.json,current package,environment provenance and proof-status boundary
+VALIDATION_REPORT.json,current package,reproduction verification summary
+MANIFEST_SHA256.txt,current package,SHA-256 integrity manifest
+ZENODO_METADATA.md,current package,suggested archival metadata
