@@ -1,0 +1,170 @@
+name: Publish SCFT-A curvature-completion package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-curvature-completion.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pinned dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Reconstruct inherited figure data
+        shell: bash
+        run: |
+          cat .bootstrap/inherited_bg.part1 .bootstrap/inherited_bg.part2 | base64 -d | xz -dc > inherited_background_figure.csv
+          echo 'ee95e5a21fd3f643056b343b5af5a95e16609937c70afeed1633368029bb5783  inherited_background_figure.csv' | sha256sum -c -
+
+      - name: Rebuild current scientific outputs
+        run: |
+          rm -rf generated_current
+          python scft_curvature_completion.py --output generated_current
+
+      - name: Verify regenerated outputs against supplied package
+        shell: bash
+        run: |
+          cat > expected.sha256 <<'HASHES'
+          a46387ce077ac0468059fa6b946da29df025060dd18236a7b5f7a8e08378a469  generated_current/exact_checks.json
+          aef6aa802272fc9f0fdf63b25747fecb200b8d26aea2ab6d078e404f7f2a3dae  generated_current/numerical_summary.json
+          c4d1c5e6146c8da4b5b43eced14c352310f6dd8aeec15b54cf2daa2a3a48339f  generated_current/loaded_background.csv
+          0b060d236b24f1c10222ff156b8573543b11bc06d68da50cf09aad30b81fd84b  generated_current/endpoint_spectrum.csv
+          08f4cfc9ecece2ad117f3103355be19ddeb2bd76c7aadd7182e57bd35a4956e9  generated_current/response_summary.csv
+          df66ef6814cf90ddd1340909f874fed30c12980bcb41ba3a4978c266485c5f8f  generated_current/response_00.csv
+          d711eda1d46614386c8a321836e3dc93aecc4ada5b20f4d46e9bf45aa977f665  generated_current/response_24.csv
+          8da1b37adfbd7755ae4fcc5399ebe73934025237ef7293009efbd8ecf1bf2b73  generated_current/response_30.csv
+          5cd9a787cabeee43062aeeeb041f57ca7abdcc069d7ebb2dba3315bb2717e66d  generated_current/response_35.csv
+          cda851d0f9e22256621d420ee811806db0ed19ba1dc88708cd550f1549b1b128  generated_current/response_38.csv
+          515cbf337ec00fe018b6a7f02d4b9bcfdb4f16db77f60fe902435b091f896148  generated_current/response_41.csv
+          b28abd0f1b9a447262906c79eefafed9185a5df8808ca93e36d96247180e35cc  generated_current/all_responses.npz
+          HASHES
+          sha256sum -c expected.sha256
+          test "$(sha256sum scft_curvature_completion.py | cut -d' ' -f1)" = "923515687a9ac1016860c57ac8087e447a7a678f04fab128fbbef1072401a253"
+          test "$(sha256sum coupling_input.json | cut -d' ' -f1)" = "0c031e975d53e9f396e5188ebc1cf59bf953b5f48d0e1d4294063e7068264d12"
+          test "$(sha256sum requirements.txt | cut -d' ' -f1)" = "f7308e5b60ea62603b458da5fadbb55614b46fbb4d083200fa2cc9843085ceef"
+
+      - name: Replace obsolete S0 files with the current package
+        shell: bash
+        run: |
+          git rm -f --ignore-unmatch \
+            build_manuscript.py \
+            export_modes_csv.py \
+            refined_background.json \
+            refinement_differences.json \
+            regulator_checks.json \
+            reproduce_runs.py \
+            run_exact_checks.py \
+            scft_audit.json \
+            scft_audit.py \
+            scft_background.csv \
+            scft_completion_checks.json \
+            scft_completion_checks.py \
+            scft_local_vacuum_check.py \
+            scft_modes.npz \
+            scft_rank1_checks.json \
+            scft_rank1_checks.py \
+            scft_sourcefree.csv \
+            symbolic_checks_saved_record.json \
+            verify_package.py
+          cp generated_current/exact_checks.json .
+          cp generated_current/numerical_summary.json .
+          cp generated_current/loaded_background.csv .
+          cp generated_current/endpoint_spectrum.csv .
+          cp generated_current/response_summary.csv .
+          cp generated_current/response_00.csv .
+          cp generated_current/response_24.csv .
+          cp generated_current/response_30.csv .
+          cp generated_current/response_35.csv .
+          cp generated_current/response_38.csv .
+          cp generated_current/response_41.csv .
+          cp generated_current/all_responses.npz .
+          rm -rf generated_current expected.sha256 .bootstrap
+          rm -f .github/workflows/publish-curvature-completion.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+
+      - name: Write validation report and SHA-256 manifest
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import numpy as np
+
+          root = Path('.')
+          sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          expected = {
+              'exact_checks.json': 'a46387ce077ac0468059fa6b946da29df025060dd18236a7b5f7a8e08378a469',
+              'numerical_summary.json': 'aef6aa802272fc9f0fdf63b25747fecb200b8d26aea2ab6d078e404f7f2a3dae',
+              'loaded_background.csv': 'c4d1c5e6146c8da4b5b43eced14c352310f6dd8aeec15b54cf2daa2a3a48339f',
+              'endpoint_spectrum.csv': '0b060d236b24f1c10222ff156b8573543b11bc06d68da50cf09aad30b81fd84b',
+              'response_summary.csv': '08f4cfc9ecece2ad117f3103355be19ddeb2bd76c7aadd7182e57bd35a4956e9',
+              'response_00.csv': 'df66ef6814cf90ddd1340909f874fed30c12980bcb41ba3a4978c266485c5f8f',
+              'response_24.csv': 'd711eda1d46614386c8a321836e3dc93aecc4ada5b20f4d46e9bf45aa977f665',
+              'response_30.csv': '8da1b37adfbd7755ae4fcc5399ebe73934025237ef7293009efbd8ecf1bf2b73',
+              'response_35.csv': '5cd9a787cabeee43062aeeeb041f57ca7abdcc069d7ebb2dba3315bb2717e66d',
+              'response_38.csv': 'cda851d0f9e22256621d420ee811806db0ed19ba1dc88708cd550f1549b1b128',
+              'response_41.csv': '515cbf337ec00fe018b6a7f02d4b9bcfdb4f16db77f60fe902435b091f896148',
+              'all_responses.npz': 'b28abd0f1b9a447262906c79eefafed9185a5df8808ca93e36d96247180e35cc',
+              'inherited_background_figure.csv': 'ee95e5a21fd3f643056b343b5af5a95e16609937c70afeed1633368029bb5783'
+          }
+          actual = {name: sha(name) for name in expected}
+          assert actual == expected
+          exact = json.loads(Path('exact_checks.json').read_text())
+          num = json.loads(Path('numerical_summary.json').read_text())
+          bg = np.loadtxt('loaded_background.csv', delimiter=',', skiprows=1)
+          rs = np.loadtxt('response_summary.csv', delimiter=',', skiprows=1)
+          with np.load('all_responses.npz', allow_pickle=False) as z:
+              shapes = {key: list(z[key].shape) for key in z.files}
+          assert bg.shape == (8001, 9)
+          assert rs.shape == (42, 11)
+          assert shapes == {'N': [1001], 'k': [42], 'values': [42, 1001, 15]}
+          assert exact['number_passed'] == 16 and all(exact['checks'].values())
+          assert num['number_modes'] == 42
+          report = {
+              'validated_on': '2026-09-08',
+              'generator': 'scft_curvature_completion.py',
+              'exact_checks_passed': 16,
+              'all_exact_checks_passed': True,
+              'number_modes': 42,
+              'background_shape': list(bg.shape),
+              'response_summary_shape': list(rs.shape),
+              'npz_shapes': shapes,
+              'all_scientific_outputs_match_supplied_sha256': True,
+              'scientific_output_sha256': actual,
+              'max_observable_response': num['max_observable_response'],
+              'max_channel_refinement': num['max_channel_refinement'],
+              'max_pointwise_refinement': num['max_pointwise_refinement'],
+              'max_residuals': num['max_residuals'],
+              'background_residual': num['background_residual'],
+              'independent_integrators': num['independent_integrators'],
+              'legacy_branch': 'legacy-s0-2026-09-08',
+              'scope_note': 'Byte identity verifies reproduction of the supplied scientific products in this workflow environment; it does not extend the physical proof beyond the scope stated in README.md and PROVENANCE.json.'
+          }
+          Path('VALIDATION_REPORT.json').write_text(json.dumps(report, indent=2) + '\n')
+          names = sorted(p.name for p in root.iterdir() if p.is_file() and p.name != 'MANIFEST_SHA256.txt')
+          Path('MANIFEST_SHA256.txt').write_text(''.join(f'{sha(name)}  {name}\n' for name in names))
+          PY
+
+      - name: Commit and publish to main
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          git commit -m 'Publish curvature-completion reproducibility package'
+          git push origin HEAD:main
