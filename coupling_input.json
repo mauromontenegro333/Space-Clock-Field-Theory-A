@@ -1,0 +1,8 @@
+{
+  "delta_decimal_input": "8.0835430681749942437868886561856776507281743783432e-60",
+  "provenance": "Uncertified numerical evaluation printed in supplied SCFT-A(1).tex. Inherited, not independently reevaluated.",
+  "exact_definition": "Equation r1:eq:delta in SCFT_A_corrected.tex",
+  "eta_R": "1/(2*kappa_m)",
+  "eta_R_Hd_squared": "1/240",
+  "proof_scope": "The entire exact interval 0<delta<10^-6; independent of the decimal approximation."
+}
