@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use these data or scripts, cite this dataset and the related manuscript."
+title: "Reproducibility data and exact algebra checks for Space-Clock Field Theory: A Single-Metric Theory of Dark-Sector Unification"
+type: dataset
+authors:
+  - given-names: Mauro Alfonso
+    family-names: Montenegro
+version: "2026-09-08"
+date-released: 2026-09-08
+keywords:
+  - Space-Clock Field Theory
+  - clock field
+  - modified gravity
+  - finite-wavelength perturbations
+  - Rank-1 constraints
+  - reproducibility

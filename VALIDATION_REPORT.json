@@ -1,0 +1,29 @@
+{
+  "package_validation": true,
+  "manuscript_pages": 92,
+  "manuscript_pdf_sha256": "4ec5ee2d3646fa87a61416df07ba1b9f96619b68eeb6a3f203c45a92c6d1a556",
+  "manuscript_tex_sha256": "9d2ed9c48d51f3909a78480afc2ebdabad94175476e8f1d42df7b228480d51eb",
+  "reference_background_shape": [
+    20001,
+    24
+  ],
+  "sourcefree_background_shape": [
+    4001,
+    24
+  ],
+  "refinement_background_shape": [
+    40001,
+    24
+  ],
+  "reference_modes": 5,
+  "scan_modes": 42,
+  "refinement_modes": [
+    "10.0",
+    "362.0291470135738"
+  ],
+  "completed_action_exact_checks": "14/14 passed",
+  "rank1_local_exact_checks": "54/54 passed",
+  "floating_point_used_in_exact_checks": false,
+  "duplicate_and_superseded_files_excluded": true,
+  "proof_scope": "Exact algebra checks do not establish full inhomogeneous nonlinear Rank-1 closure."
+}

@@ -1,0 +1,15 @@
+{
+  "package": "SCFT_Current_Manuscript_Data_and_Code",
+  "manuscript_title": "Space-Clock Field Theory: A Single-Metric Theory of Dark-Sector Unification",
+  "manuscript_snapshot_date": "2026-09-08",
+  "manuscript_pages": 92,
+  "author": "Mauro Alfonso Montenegro",
+  "python": "3.12.13",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "sympy": "1.14.0",
+  "numerical_scope": "Retained base-action S_0 homogeneous and finite-wavelength calculations.",
+  "completed_action_scope": "Exact algebraic auxiliary, quadratic, local-transition, and positivity identities.",
+  "nonlinear_status": "Full inhomogeneous nonlinear Rank-1 continuation remains conditional on unproved analytic hypotheses.",
+  "selection": "Duplicate data, superseded action checks, earlier manuscript builders, old figures, and old compile logs were excluded."
+}

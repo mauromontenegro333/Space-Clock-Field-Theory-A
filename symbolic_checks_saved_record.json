@@ -1,0 +1,7 @@
+{
+  "regulator_Hessian": true,
+  "kinetic_cubic": true,
+  "kinetic_quartic": true,
+  "ADM_extrinsic_cubic": true,
+  "all_passed": true
+}

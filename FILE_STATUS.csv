@@ -1,0 +1,17 @@
+path,scope,role
+manuscript/SCFT_Integrated.tex,current manuscript,standalone LaTeX source; embeds vector plots and four checker/solver sources
+manuscript/SCFT_Integrated.pdf,current manuscript,verified 92-page rendering
+scripts/scft_audit.py,base action S_0,primary background and finite-wavelength solver
+scripts/reproduce_runs.py,base action S_0,portable reference/scan/refinement/source-free runner
+scripts/export_modes_csv.py,utility,precision-preserving NPZ exporter
+scripts/scft_completion_checks.py,completed action,exact auxiliary and quadratic algebra checks
+scripts/scft_rank1_checks.py,completed action,exact local Rank-1 identities and positivity algebra checks
+scripts/historical_base_check/scft_local_vacuum_check.py,historical base diagnostic,retained appendix diagnostics; not a check of the adopted completed action
+data/reference/*,base action S_0,"loaded background, five reference modes, summary"
+data/sourcefree/*,base action S_0,source-free background
+data/scan/*,base action S_0,42-mode scan arrays and summary
+data/refinement/*,base action S_0,"tighter-tolerance background, two modes, differences"
+data/validation/refined_background.json,base action S_0,refined extrema quoted in manuscript
+data/validation/regulator_checks.json,base action S_0,regulator values quoted in retained EFT section
+data/validation/symbolic_checks_saved_record.json,saved record only,generator unavailable; not an executable proof
+checks/*,completed action,saved reports from 14 and 54 exact checks
