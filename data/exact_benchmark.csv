@@ -1,0 +1,8 @@
+quantity,exact_expression,units,sign
+Q_star,101/100,dimensionless,positive
+N_star,100/101,dimensionless,positive
+nu_star_Hd_squared,1/(2*10^170),dimensionless,positive
+ell_star_Hd_squared,1/(2*10^30),dimensionless,positive
+tau_6_Hd_fourth,10^(-340),dimensionless,positive
+U_star_second_over_Hd_squared,1000000000000000000000000000000000000*sqrt(1111)/33326667,dimensionless,positive
+m_star_squared_over_Hd_squared,100000000000000000000000000000000*sqrt(1111)/3267,dimensionless,positive

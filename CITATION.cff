@@ -1,19 +1,11 @@
 cff-version: 1.2.0
-message: "If you use these data or scripts, cite this reproducibility package and the related SCFT-A manuscript."
-title: "Reproducibility data and exact checks for the SCFT-A intrinsic spatial curvature completion"
+message: "If you use this technical supplement, data, or code, please cite the SCFT-A technical companion and this repository."
+title: "SCFT-A Technical Companion and Reproducibility Package"
 type: dataset
 authors:
   - given-names: Mauro Alfonso
     family-names: Montenegro
-version: "2026-09-08-curvature-completion"
+version: "2026-09-08-final-supplement"
 date-released: 2026-09-08
 repository-code: "https://github.com/mauromontenegro333/Space-Clock-Field-Theory-A"
-keywords:
-  - Space-Clock Field Theory
-  - SCFT-A
-  - clock field
-  - modified gravity
-  - intrinsic spatial curvature
-  - cosmological perturbations
-  - reproducibility
 license: CC0-1.0

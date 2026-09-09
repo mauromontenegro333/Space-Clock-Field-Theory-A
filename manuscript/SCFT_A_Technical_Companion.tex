@@ -1,0 +1,2294 @@
+\documentclass[aps,prd,reprint,onecolumn,notitlepage,nofootinbib,longbibliography,floatfix]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+
+\hypersetup{
+  hidelinks,
+  pdftitle={SCFT-A: Technical Companion and Reproducibility Certificate},
+  pdfauthor={Mauro Alfonso Montenegro},
+  pdfsubject={Reciprocal clock dynamics, nonlinear constraint structure, full local Hadamard well-posedness, positive de Sitter scalar spectrum, local transition positivity, and reproducibility in Space-Clock Field Theory},
+  pdfkeywords={space-clock field theory, dual time, clock field, modified gravity, dark-sector unification, matter-mixed perturbations, primordial completion, kinetic gravity braiding, MOND, preferred foliation}
+}
+
+\allowdisplaybreaks[2]
+\emergencystretch=3em
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.14}
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=0.22em,topsep=0.35em}
+
+\newtheoremstyle{scstyle}
+  {0.8em}{0.8em}{\itshape}{}{\bfseries}{.}{0.5em}{}
+\theoremstyle{scstyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{postulate}{postulate}{postulates}
+\Crefname{postulate}{Postulate}{Postulates}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\mpl}{M_{\rm Pl}}
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\scrM}{\mathcal M}
+\newcommand{\scrS}{\mathcal S}
+\newcommand{\scrT}{\mathcal T}
+\newcommand{\roleeq}{\mathrel{\widehat{=}}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\Lie}{\mathcal L}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\clk}{\mathrm{T}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\sigA}{\Sigma_{\rm A}}
+\newcommand{\JK}{\mathcal F_{K}}
+\newcommand{\vM}{v_{\rm M}}
+\newcommand{\ellM}{\ell_{\rm M}}
+\newcommand{\lamM}{\lambda_{\rm M}}
+\newcommand{\Kt}{\widetilde{\mathcal K}}
+
+
+\newcommand{\kap}{\kappa_m}
+\newcommand{\cR}{{}^{(3)}\!R}
+\newcommand{\cJs}{{\mathcal J_{\rm A,\sigma}}}
+\newcommand{\tf}{\mathrm{TF}}
+\newcommand{\DN}{\mathfrak D}
+\newcommand{\AN}{\mathscr A_N}
+\newcommand{\cc}{\mathfrak c}
+\newcommand{\etaR}{\eta_R}
+
+
+\newcommand{\MainRef}[1]{\texttt{#1}}
+\begin{document}
+\title{SCFT-A: Technical Companion and Reproducibility Certificate}
+\author{Mauro Alfonso Montenegro}
+\affiliation{Independent researcher, Austin, Texas, USA}
+\date{September 8, 2026}
+\begin{abstract}
+This companion preserves the expanded interaction calculation and detailed appendices separated from the integrated SCFT-A manuscript. It records supporting derivations, reference-action calculations, exact coefficient and numerical certificates, and the status of deferred questions. It is supporting material for the same work, not a second paper establishing additional physical claims. The revised coefficient hierarchy, contracting branch, endpoint energy, and full local nonlinear vacuum Cauchy theorem are proved in the main manuscript. This companion supplies the exact coefficient certificate, the classical ideal-fluid cubic functional, and a dedicated audit of the nonlinear Hadamard well-posedness construction: strongly regular data, tame lapse--trace reconstruction, spatial-harmonic reduction, sixth-order coercivity, the exact loss-free variational energy, existence, uniqueness, continuous dependence, continuation, and constraint propagation. Global nonlinear stability, a nonlinear bounded-domain initial-boundary-value theorem, an unconditional theorem for the unspecified visible-matter functional, a complete strong-coupling domain, and quantum/radiative control remain open.
+\end{abstract}
+\maketitle
+\section*{How to use this material}
+Supplementary Section I preserves the full scalar interaction expansion from the source manuscript. Appendices A--N preserve the earlier detailed derivations and exact certificates; Appendix O records the proof ledger for the newly integrated nonlinear Cauchy theorem. Some formulas are repeated to make each calculation intelligible. References explicitly marked ``main manuscript'' point to the integrated manuscript. Reference-action formulas concern $S_0$ and must not be used as completed-action perturbation results.
+
+The original appendices are retained as a technical record. Their inherited wording does not supersede the integrated manuscript's explicit restrictions, especially the finite domain of the DBI template, the strongly regular domain of the nonlinear Cauchy theorem, and the distinction between a controlled local stationary hierarchy and a nonlinear sourced cosmological matching solution. Appendix O supersedes the earlier statement that local nonlinear evolution remained open: the boundaryless vacuum Cauchy problem is now proved locally Hadamard well posed on the stated strongly regular torus domain. Global stability, bounded-domain evolution, unrestricted visible matter, and quantum control remain separate problems.
+
+\begin{center}\small
+\begin{tabular}{p{0.23\linewidth}p{0.29\linewidth}p{0.38\linewidth}}
+\toprule Material & Recommended destination & Reason \\
+\midrule
+Geometric, current, minisuperspace and constraint derivations & Supplementary material and a versioned repository & Support the current paper; not independent new results. \\
+Reference scalar reductions and exact-check records & Repository, with clearly identified action version & Preserve reproducibility and prevent mixing seed and completed calculations. \\
+Expanded cubic vertices & Technical companion now & Includes the ideal-fluid cubic functional; a complete strong-coupling result remains open. \\
+Local vacuum nonlinear Cauchy evolution & Main manuscript plus Appendix O of this companion & Full local Hadamard well-posedness is established on the strongly regular boundaryless torus domain, including existence, uniqueness, continuous dependence, continuation, and constraint propagation. \\
+Global stability and nonlinear bounded-domain evolution & Later work & Neither global nonlinear stability nor a coupled sixth-order initial-boundary-value theorem is established. \\
+Galaxies, lensing and primordial observables & Later work after sourced solutions and data comparison & The revised benchmark passes its local scale hierarchy; nonlinear sourced matching and observational transfer calculations are still required. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\clearpage
+\section{Interactions of the completed action and effective-theory limits}
+\label{sec:eftcontrol}
+Quadratic positivity, finite-time evolution, and quantum perturbative
+control are different questions. The following expansion retains the
+four spatial operators and the smooth acceleration tip of
+main manuscript, Eq.~(59). Its vertices are therefore those of the same
+action as the linear response. No two-derivative interaction scale is
+assigned to the completed theory.
+
+\subsection{An exact scalar action before expansion}
+
+Use the scalar variables of main manuscript, Eq.~(256), with the covariant shift $N_i=\partial_i\psi$, and put $q(t)=\dot{\bar T}(t)$. Define
+\begin{equation}
+ A=H+\dot\zeta,\qquad
+ V^i{}_j=h^{ik}D_kD_j\psi,\qquad v=V^i{}_i,
+ \qquad Q_{\rm loc}=\frac{q}{1+\alpha}.
+\label{eq:eftExactVariables}
+\end{equation}
+The pure-scalar restriction of the completed action, to all perturbative orders, is
+\begin{align}
+\frac{\mathcal L_{\rm sc}}{\mpl^2a^3}
+=e^{3\zeta}\Bigg\{&\frac{1+\alpha}{2}\,{}^{(3)}R
+ +\frac{-3A^2+2Av+\tfrac12[\Tr(V^2)-v^2]}{1+\alpha}
+ +(1+\alpha)\Kt(Q_{\rm loc})\nonumber\\
+ &+\cB_{\rm A}(Q_{\rm loc})(3A-v)
+ -(1+\alpha)a_0^2\sigA(Q_{\rm loc})\cJs(Y)\nonumber\\
+&-\frac{1+\alpha}{2}\left[\nu(Q_{\rm loc})D_iK D^iK
++\ell(Q_{\rm loc})\cR D_i\mathcal A^i
++\tau_6D_i\cR_{jk}D^i\cR^{jk}+\etaR\cR^{\,2}\right]\Bigg\},
+\label{eq:eftExactAction}
+\end{align}
+where
+\begin{equation}
+ {}^{(3)}R=-\frac{e^{-2\zeta}}{a^2}
+ [4\partial^2\zeta+2(\partial\zeta)^2],\qquad
+ Y=\frac{e^{-2\zeta}(\partial\alpha)^2}
+ {a^2a_0^2(1+\alpha)^2}.
+\label{eq:eftExactGeometry}
+\end{equation}
+Equations~\eqref{eq:eftExactAction} and \eqref{eq:eftExactGeometry} fix the scalar vertices without an imported Horndeski cubic formula. They follow from
+$NK^i{}_j=A\delta^i{}_j-V^i{}_j$. Tensor and vector responses generated at second order do not enter the pure-scalar cubic action: they multiply their vanishing first-order constraint or field equations. Their contributions to quartic interactions must nevertheless be retained in a complete higher-order calculation.
+
+\subsection{Complete analytic third-order functional}
+
+All clock-function derivatives below are evaluated at the homogeneous $Q=q(t)$, with $\cK=\Kt$ and $\cB=\cB_{\rm A}$. The letter $A=H+\dot\zeta$ in this subsection is local to the exact-action notation and is distinct from $2+3b$ in the quadratic reduction. Introduce
+\begin{gather}
+ \chi=\frac{\partial^2\psi}{a^2},\qquad
+ U_{ij}=\frac{\partial_i\partial_j\psi}{a^2},\qquad
+ X_\psi=\frac{\partial_i\zeta\,\partial_i\psi}{a^2},\qquad
+ D_2=U_{ij}U_{ij}-\chi^2,\nonumber\\
+ D_3=-4\zeta D_2-
+ \frac{4}{a^4}(\partial_i\partial_j\psi)
+ (\partial_i\zeta)(\partial_j\psi),\nonumber\\
+ m_1=3\zeta-\alpha,\qquad
+ m_2=\frac92\zeta^2-3\zeta\alpha+\alpha^2,\qquad
+ m_3=\frac92\zeta^3-\frac92\zeta^2\alpha+3\zeta\alpha^2-\alpha^3.
+\label{eq:eftCubicAbbreviations}
+\end{gather}
+The extrinsic-curvature coefficients are
+\begin{align}
+ E_0&=-3H^2,& E_1&=-6H\dot\zeta+2H\chi,\nonumber\\
+ E_2&=-3\dot\zeta^2+2\dot\zeta\chi
+       +2H(X_\psi-2\zeta\chi)+\tfrac12D_2,\nonumber\\
+ E_3&=2\dot\zeta(X_\psi-2\zeta\chi)
+       +2H(2\zeta^2\chi-2\zeta X_\psi)+\tfrac12D_3.
+\label{eq:eftExtrinsicCoefficients}
+\end{align}
+The Einstein contribution of third order is exactly
+\begin{equation}
+ \ell_{{\rm EH},3}=E_3+m_1E_2+m_2E_1+m_3E_0
+ -\frac{(\zeta^2+2\alpha\zeta)\partial^2\zeta
+ +(\zeta+\alpha)(\partial\zeta)^2}{a^2}.
+\label{eq:eftEH3}
+\end{equation}
+No use of the background equations or integration by parts is required for this expression. The kinetic-clock contribution is
+\begin{align}
+ \ell_{K,3}={}&\frac92\cK\zeta^3
+ +\frac92(\cK-Q\cK_{,Q})\zeta^2\alpha
+ +\frac32Q^2\cK_{,QQ}\zeta\alpha^2
+ -\left(\frac12Q^2\cK_{,QQ}
+        +\frac16Q^3\cK_{,QQQ}\right)\alpha^3.
+\label{eq:eftK3}
+\end{align}
+For the braid define
+\begin{align}
+ b_1&=-Q\cB_{,Q},&
+ b_2&=Q\cB_{,Q}+\tfrac12Q^2\cB_{,QQ},\nonumber\\
+ b_3&=-Q\cB_{,Q}-Q^2\cB_{,QQ}
+          -\tfrac16Q^3\cB_{,QQQ},\nonumber\\
+ U_1&=3\dot\zeta-\chi+9H\zeta,\nonumber\\
+ U_2&=9\zeta\dot\zeta-\zeta\chi-X_\psi+\tfrac{27}{2}H\zeta^2,\nonumber\\
+ U_3&=\tfrac{27}{2}\zeta^2\dot\zeta
+       -\tfrac12\zeta^2\chi-\zeta X_\psi
+       +\tfrac{27}{2}H\zeta^3.
+\label{eq:eftB3Abbreviations}
+\end{align}
+Its full contribution is
+\begin{equation}
+ \ell_{B,3}=\cB U_3+b_1\alpha U_2+b_2\alpha^2U_1+3Hb_3\alpha^3.
+\label{eq:eftB3}
+\end{equation}
+Writing $\sigma=\sigA(Q)$ and $\sigma_Q=\sigA{}_{,Q}(Q)$, the analytic acceleration contribution is
+\begin{equation}
+ \ell_{J,3}^{\rm an}
+ =[\sigma\zeta-(\sigma+Q\sigma_Q)\alpha]
+ \frac{(\partial\alpha)^2}{a^2}.
+\label{eq:eftJ3analytic}
+\end{equation}
+In particular, multiplying a constant-regulator cubic action by $\sigA$ would miss the $-Q\sigma_Q\alpha(\partial\alpha)^2/a^2$ vertex. This term vanishes on the primordial and late plateaux, but is present throughout the clock-norm transition.
+
+\subsection{Spatial completion vertices and the smooth acceleration tip}
+The four spatial operators contribute additional cubic vertices. Define
+$K=3H+K_1+K_2+\cdots$, $\cR=R_1+R_2+\cdots$, and
+$D_i\mathcal A^i=d_1+d_2+\cdots$, where subscripts denote perturbative
+order, not clock derivatives. Direct expansion gives
+\begin{align}
+K_1&=3\dot\zeta-\chi-3H\alpha,\nonumber\\
+K_2&=3H\alpha^2-\alpha(3\dot\zeta-\chi)+2\zeta\chi-X_\psi,\nonumber\\
+R_1&=-4a^{-2}\partial^2\zeta,
+& R_2&=a^{-2}\left[8\zeta\partial^2\zeta-2(\partial\zeta)^2\right],\nonumber\\
+d_1&=a^{-2}\partial^2\alpha,
+& d_2&=a^{-2}\left[-\alpha\partial^2\alpha-(\partial\alpha)^2
+-2\zeta\partial^2\alpha+\partial_i\zeta\partial_i\alpha\right].
+\label{eq:fullSpatialJets}
+\end{align}
+In the normalization $S_3=\mpl^2\int a^3\ell_3\,\dd t\dd^3x$,
+\begin{align}
+\ell_{\nu,3}&=-\frac{1}{2a^2}\left\{2\nu\partial_iK_1\partial_iK_2
++\left[\nu(\alpha+\zeta)-Q\nu_Q\alpha\right](\partial K_1)^2\right\},
+\label{eq:fullNuCubic}\\
+\ell_{\ell,3}&=-\frac12\left\{\ell(R_1d_2+R_2d_1)
++\left[(\ell-Q\ell_Q)\alpha+3\ell\zeta\right]R_1d_1\right\}.
+\label{eq:fullEllCubic}
+\end{align}
+For the Ricci-gradient operator, use lower coordinate indices and set
+\begin{align}
+R^{[1]}_{ij}&=-\partial_i\partial_j\zeta-\delta_{ij}\partial^2\zeta,
+& R^{[2]}_{ij}&=\partial_i\zeta\partial_j\zeta-\delta_{ij}(\partial\zeta)^2,
+\nonumber\\
+\Gamma^{k[1]}_{ij}&=\delta_i^k\partial_j\zeta+\delta_j^k\partial_i\zeta
+-\delta_{ij}\partial^k\zeta,
+& Z^{[1]}_{ijk}&=\partial_iR^{[1]}_{jk},\nonumber\\
+Z^{[2]}_{ijk}&=\partial_iR^{[2]}_{jk}
+-\Gamma^{l[1]}_{ij}R^{[1]}_{lk}-\Gamma^{l[1]}_{ik}R^{[1]}_{jl}.
+\label{eq:fullRicciJets}
+\end{align}
+Contractions in this display use $\delta_{ij}$. The remaining cubic term is
+\begin{equation}
+\ell_{\tau,3}=-\frac{\tau_6}{2a^6}
+\left[2Z^{[1]}_{ijk}Z^{[2]}_{ijk}
++(\alpha-3\zeta)Z^{[1]}_{ijk}Z^{[1]}_{ijk}\right].
+\label{eq:fullTauCubic}
+\end{equation}
+The intrinsic scalar-curvature square contributes
+\begin{align}
+\ell_{R,3}&=-\frac{\etaR}{2}
+ [2R_1R_2+(\alpha+3\zeta)R_1^2]\nonumber\\
+&=-\frac{8\etaR}{a^4}
+ [(\alpha-\zeta)(\partial^2\zeta)^2
+  +(\partial^2\zeta)(\partial\zeta)^2].
+\label{eq:curvatureCubic}
+\end{align}
+The coefficient is constant, so there is no omitted $Q$-derivative
+vertex. These formulas retain derivatives of the spatial switches whenever the
+background lies in a transition region. On the exterior their coefficients
+are constant, but their perturbations do not vanish.
+
+The acceleration regularization also changes the interaction order. With
+$\sigma$ denoting the tip regulator in main manuscript, Eq.~(58), not the
+profile $\Sigma_{\rm A}$, its Taylor expansion at zero acceleration is
+\begin{equation}
+\cJs(Y)=-Y+\frac{\mu_{\rm A}(\sigma)}{2\gamma_{\rm N}\sigma^2}Y^2
++\text{terms flat at }Y=0.
+\label{eq:fullTipTaylor}
+\end{equation}
+Consequently the action has no seed $|\nabla\alpha|^3$ Taylor vertex at this
+point. Its first nonlinear invariant contribution from the tip is
+\begin{equation}
+S^{\rm tip}_4=-\frac{\mpl^2\mu_{\rm A}(\sigma)}
+ {2\gamma_{\rm N}\sigma^2a_0^2}
+\int\dd t\dd^3x\,a^3\Sigma_{\rm A}
+\left|\frac{\nabla\alpha_1}{a}\right|^4.
+\label{eq:fullTipQuartic}
+\end{equation}
+The analytic geometric cubic acceleration terms are already included in
+\cref{eq:eftJ3analytic}; their presence is consistent with the absence of
+a nonanalytic absolute-cubic invariant.
+
+\subsection{Completed cubic reduction and limits of the effective-theory claim}
+The complete pure-scalar gravitational cubic functional is
+\begin{equation}
+S_3=\mpl^2\int\dd t\dd^3x\,a^3
+\left[\ell_{{\rm EH},3}+\ell_{K,3}+\ell_{B,3}
++\ell_{J,3}^{\rm an}+\ell_{\nu,3}+\ell_{\ell,3}+\ell_{\tau,3}+\ell_{R,3}\right].
+\label{eq:eftFullAnalytic3}
+\end{equation}
+Here $\cK=\Kt$, $\cB=\cB_{\rm A}$, and the acceleration term is the
+adopted smooth function. For a source-free homogeneous background the
+first-order constraint substitutions are
+\begin{equation}
+\alpha_1=\frac{2J\dot\zeta-2bC\zeta}{\mathcal D},\qquad
+\chi_1=K\dot\zeta+\frac{2JC}{\mathcal D}\zeta,\qquad
+\psi_1=-\frac{\chi_1}{p^2}.
+\label{eq:eftCubicReduction}
+\end{equation}
+These are Fourier multipliers; their inverse transforms are substituted
+into the local products in $S_3$. The operator domains are those of the
+linear constraint problem. Second-order auxiliary solutions multiply the
+first-order constraint equations and are unnecessary for the reduced
+cubic action on an exact background. For matter loading one must instead
+use main manuscript, Eq.~(389); main manuscript, Eq.~(390) and add the matter cubic
+functional. Equation~\eqref{eq:fullTipQuartic} is one quartic contribution,
+not the complete quartic action.
+
+On a band with $K>0$ and $V_{\rm full}>0$, a local canonical normalization
+is $v=\sqrt{2}\mpl\sqrt K\,\zeta$, with the scale-factor normalization
+restored when time derivatives are taken. The high-momentum restoring
+symbol is of sixth spatial order, not the saturating frequency of a
+two-derivative truncation. Frequencies and spatial momenta must therefore
+be treated separately in any power-counting analysis
+\cite{Cheung2008,BlasPujolasSibiryakov2011}. A controlled perturbative use
+would require an independently established window of the form
+\begin{equation}
+\max\{H,\omega_p\}<\Lambda_\omega,
+\qquad p<\Lambda_p,\qquad
+|\alpha|\ll1,
+\quad Q_{\rm loc}\in\mathcal D_Q,
+\label{eq:eftDerivativeDomain}
+\end{equation}
+where the frequency bound is used only in an oscillatory band. In using
+the strict tip Taylor expansion, one additionally needs
+$|\nabla\alpha|/(aa_0)\ll\sigma$. Neither cutoff is established here.
+The exterior restoring correction in main manuscript, result~XII.1
+is an explicit change to the action, independently verified at every
+endpoint momentum. It is not implemented by imposing a favorable cutoff. No quantum stability, radiative protection,
+or full matter-mixed strong-coupling scale is inferred from these cubic
+coefficients alone.
+
+
+\subsection{Matter-mixed cubic functional for the specified ideal fluids}
+\label{sec:mixedCubicNew}
+To fix the nonlinear matter model used in the response example, take
+the Schutz--Sorkin action of Appendix~\ref{app:mattermix} with
+\begin{equation}
+ \rho_A(n)=\rho_{A0}(n/n_{A0})^{1+w_A},\qquad
+ w_b=0,\quad w_\gamma=w_\nu=1/3.
+ \label{eq:fluidNonlinearCompletion}
+\end{equation}
+This specifies the classical irrotational barotropic sectors only. It
+does not supply the microscopic quantum action of photons or neutrinos.
+Write $J_A^0=\bar J_A(1+d_A)$, $J_A^i=\bar J_Aj_A^i$,
+$\ell_A=\bar\ell_A+\lambda_A$, and $N_i=\partial_i\psi$.
+The conserved background current has $\bar n_A=\bar J_A/a^3$.
+Let $\beta^i=a^{-2}\partial_i\psi$ and $v_A^i=j_A^i+\beta^i$;
+these are current variables, not the reduced velocity potential of the
+main text. All contractions below use $\delta_{ij}$.
+
+The exact number density is
+\begin{equation}
+ n_A=\bar n_Ae^{-3\zeta}
+ \left[(1+d_A)^2-\frac{a^2e^{2\zeta}}{(1+\alpha)^2}
+ \left|j_A+e^{-2\zeta}\beta(1+d_A)\right|^2\right]^{1/2}.
+\end{equation}
+The current--potential terms in the matter action are at most quadratic
+in these independent perturbations. Therefore their cubic contribution
+vanishes and the full matter cubic density is
+\begin{align}
+ \mathcal L_{A,3}=-a^3\bar\rho_A\Big\{P_{A,3}
+ -\frac{1+w_A}{2}a^2\big[&((w_A-1)d_A+(2-3w_A)\zeta-\alpha)|v_A|^2\nonumber\\
+ &+2(d_A-2\zeta)v_A\cdot\beta\big]\Big\},
+ \label{eq:matterCubicExplicit}
+\end{align}
+where
+\begin{align}
+ P_{A,3}={}&-\frac92w_A^3\zeta^3+\frac92w_A^2\alpha\zeta^2
+ +(1+w_A)d_A\left(\frac92w_A^2\zeta^2-3w_A\alpha\zeta\right)\nonumber\\
+ &+\frac{w_A(1+w_A)}2d_A^2(\alpha-3w_A\zeta)
+ +\frac{w_A(1+w_A)(w_A-1)}6d_A^3.
+\end{align}
+To verify this result, substitute the exact density into
+$-a^3\bar\rho_A(1+\alpha)e^{-3w_A\zeta}
+[(1+d_A)^2-\cdots]^{(1+w_A)/2}$ and extract perturbative order three.
+The supplied symbolic script differentiates this independent expression
+three times and checks equality with \cref{eq:matterCubicExplicit}.
+Adding $\sum_A\mathcal L_{A,3}$ to the complete gravitational cubic
+functional specifies every cubic mixed vertex in the stated current
+variables. Algebraic current variables, the lapse, and the shift may be
+eliminated with their first-order solutions; higher-order auxiliary
+solutions multiply the lower-order equations. A field redefinition to
+the density variables used in the numerical response must transform the
+quadratic action as well. No equivalence is asserted by identifying the
+variables only to first order.
+
+This closes the missing classical ideal-fluid cubic functional. It
+does not determine the complete quartic exchange amplitude, a uniform
+strong-coupling scale, or a quantum matter completion.
+
+
+\appendix
+\section{Geometric identities of the clock foliation}
+\label{app:geometry}
+
+\subsection{Normalization and projector}
+
+From main manuscript, Eq.~(5),
+\begin{equation}
+u_\mu u^\mu=-1.
+\label{eq:unormapp}
+\end{equation}
+The projector satisfies
+\begin{equation}
+h_\mu{}^\alpha h_\alpha{}^\nu=h_\mu{}^\nu,
+\qquad
+h_\mu{}^\nu u_\nu=0,
+\qquad
+h_\mu{}^\mu=3.
+\label{eq:hprojectorapp}
+\end{equation}
+For vectors tangent to $\Sigma_T$, $h_{\mu\nu}$ is positive definite. The decomposition~main manuscript, Eq.~(7) follows algebraically from the definition of $h_{\mu\nu}$.
+
+\subsection{Acceleration identity}
+
+Differentiate $u_\mu=-Q^{-1}\nabla_\mu T$ along $u^\nu$:
+\begin{align}
+\cA_\mu
+&=u^\nu\nabla_\nu u_\mu\nonumber\\
+&=Q^{-2}(u^\nu\nabla_\nu Q)\nabla_\mu T
+-Q^{-1}u^\nu\nabla_\nu\nabla_\mu T.
+\label{eq:accstep1}
+\end{align}
+Since second derivatives commute on a scalar and $u^\nu\nabla_\mu\nabla_\nu T=\nabla_\mu(u^\nu\nabla_\nu T)-(\nabla_\mu u^\nu)\nabla_\nu T$, while $u^\nu\nabla_\nu T=Q$ and $(\nabla_\mu u^\nu)u_\nu=0$, one obtains
+\begin{equation}
+\cA_\mu
+=-\nabla_\mu\ln Q-u_\mu u^\nu\nabla_\nu\ln Q
+=-h_\mu{}^\nu\nabla_\nu\ln Q.
+\label{eq:accproof}
+\end{equation}
+The acceleration is therefore spatial, $u^\mu\cA_\mu=0$.
+
+\subsection{Extrinsic curvature and volume expansion}
+
+Define
+\begin{equation}
+K_{\mu\nu}=h_\mu{}^\alpha h_\nu{}^\beta\nabla_\alpha u_\beta.
+\label{eq:Kcov}
+\end{equation}
+Hypersurface orthogonality makes $K_{\mu\nu}$ symmetric. Its trace is
+\begin{equation}
+K=h^{\mu\nu}K_{\mu\nu}=\nabla_\mu u^\mu=\Theta.
+\label{eq:Kthetaapp}
+\end{equation}
+For the induced volume element $\sqrt h$ transported along the normal,
+\begin{equation}
+\Lie_u\sqrt h=\Theta\sqrt h.
+\label{eq:volumeevolution}
+\end{equation}
+This identity explains why a constant $\cB$ contributes only a boundary term:
+\begin{equation}
+\int\dd^4x\sqrt{-g}\,\cB_0\Theta
+=\cB_0\int\dd T\dd^3x\,\partial_T\sqrt h
+\label{eq:Bboundary}
+\end{equation}
+up to the shift divergence and boundary conditions.
+
+\subsection{Gauss--Codazzi decomposition}
+
+The four-dimensional Ricci scalar satisfies
+\begin{equation}
+R={}^{(3)}R+K_{ij}K^{ij}-K^2
++2\nabla_\mu\left(u^\mu K-\cA^\mu\right),
+\label{eq:GaussCodazzi}
+\end{equation}
+with the sign convention of main manuscript, Eq.~(93). Removing the total divergence gives the Einstein part of main manuscript, Eq.~(94).
+
+\section{Kinetic-braiding representation and clock current}
+\label{app:braiding}
+
+\subsection{Boundary transformation}
+
+Starting from
+\begin{equation}
+\Theta=-\nabla_\mu\left(\frac{\nabla^\mu T}{Q}\right)
+=-\frac{\Box T}{Q}
++\frac{\nabla_\mu T\nabla^\mu Q}{Q^2},
+\label{eq:thetaT}
+\end{equation}
+we obtain
+\begin{align}
+\int\sqrt{-g}\,\cB\Theta
+&=\int\sqrt{-g}\left[-\frac{\cB}{Q}\Box T
++\frac{\cB}{Q^2}\nabla T\cdot\nabla Q\right]\nonumber\\
+&\doteq\int\sqrt{-g}\,
+\frac{\cB_{,Q}}{Q}\nabla T\cdot\nabla Q
+=\int\sqrt{-g}\,
+\frac{\cB_{,Q}}{Q^2}\nabla T\cdot\nabla X.
+\label{eq:Bboundaryfull}
+\end{align}
+Defining $G_3$ by main manuscript, Eq.~(70) then yields main manuscript, Eq.~(71).
+
+\subsection{Shift current of the \texorpdfstring{$\cK+\cB$}{K+B} sector}
+
+For
+\begin{equation}
+\cL_{KB}=P(X)-G_3(X)\Box T,
+\qquad
+P(X)=\cK(\sqrt{2X}),
+\label{eq:PKGB}
+\end{equation}
+the shift equation is $\nabla_\mu J_{KB}^\mu=0$, where
+\begin{equation}
+J_{KB}^\mu
+=\left(P_{,X}-G_{3,X}\Box T\right)\nabla^\mu T
+-G_{3,X}\nabla^\mu X.
+\label{eq:KGBcurrent}
+\end{equation}
+On a homogeneous FLRW background in matter proper time,
+\begin{equation}
+\nabla^0T=-Q,
+\qquad
+\Box T=-\dot Q-3HQ,
+\qquad
+\nabla^0X=-Q\dot Q.
+\label{eq:homKGBidentities}
+\end{equation}
+Using $P_{,X}=\cK_{,Q}/Q$ and $G_{3,X}=\cB_{,Q}/Q^2$ gives
+\begin{equation}
+J_{KB}^0=-\left(\cK_{,Q}+3H\cB_{,Q}\right).
+\label{eq:homKGBcurrent}
+\end{equation}
+The conservation equation $\partial_t(a^3J_{KB}^0)=0$ is therefore exactly main manuscript, Eq.~(166), up to the sign convention used to define $C_T$.
+
+\subsection{Why no higher-time-derivative mode appears}
+
+The covariant representation contains $\Box T$, but equation~\eqref{eq:KGBcurrent} contains at most second derivatives in the field equations. In unitary gauge the same fact is immediate: main manuscript, Eq.~(94) depends on $N$, $D_iN$, $h_{ij}$, and $K_{ij}$ but not on $\dot N$ or on higher time derivatives of $h_{ij}$. The scalar is physical because time diffeomorphisms are fixed by $T$, not because an Ostrogradsky pair has been introduced.
+
+\section{Detailed minisuperspace variation}
+\label{app:minisuperspace}
+
+\subsection{Clock variation}
+
+For $Q=\dot T/N$, the momentum is
+\begin{align}
+P_T
+&=\frac{\partial L_{\rm mini}}{\partial\dot T}\nonumber\\
+&=\mpl^2Na^3\cK_{,Q}\frac{1}{N}
++3\mpl^2a^2\dot a\,\cB_{,Q}\frac{1}{N}\nonumber\\
+&=\mpl^2a^3\left(\cK_{,Q}+3H\cB_{,Q}\right).
+\label{eq:PTderivation}
+\end{align}
+Since $T$ does not appear explicitly, $\dot P_T=0$.
+
+\subsection{Lapse variation}
+
+At fixed $\dot T$, $\partial Q/\partial N=-Q/N$. The clock contribution to $\partial L/\partial N$ is
+\begin{align}
+\frac{\partial L_T}{\partial N}
+&=\mpl^2a^3\left(\cK-Q\cK_{,Q}\right)
+-3\mpl^2a^2\dot a\,\cB_{,Q}\frac{Q}{N}\nonumber\\
+&=-a^3\mpl^2
+\left(Q\cK_{,Q}-\cK+3HQ\cB_{,Q}\right).
+\label{eq:Nvariationmini}
+\end{align}
+The standard relation $\partial L_T/\partial N=-a^3\rho_T$ yields main manuscript, Eq.~(170).
+
+\subsection{Scale-factor variation}
+
+The clock Lagrangian is
+\begin{equation}
+L_T=\mpl^2Na^3\cK+3\mpl^2a^2\dot a\,\cB.
+\label{eq:LTminiapp}
+\end{equation}
+Its Euler derivative is
+\begin{align}
+\frac{\partial L_T}{\partial a}
+-\frac{\dd}{\dd\lambda}
+\frac{\partial L_T}{\partial\dot a}
+&=3\mpl^2Na^2\cK
++6\mpl^2a\dot a\cB
+-\frac{\dd}{\dd\lambda}(3\mpl^2a^2\cB)\nonumber\\
+&=3\mpl^2Na^2
+\left(\cK-\cB_{,Q}\frac{\dot Q}{N}\right).
+\label{eq:avariationmini}
+\end{align}
+Since this equals $3Na^2p_T$, main manuscript, Eq.~(171) follows.
+
+\subsection{Continuity identity}
+
+Define $\cF=\cK_{,Q}+3H\cB_{,Q}$. Then
+\begin{align}
+\dot\rho_T
+&=\mpl^2\frac{\dd}{\dd t}(Q\cF-\cK)\nonumber\\
+&=\mpl^2\left(\dot Q\cF+Q\dot\cF-\cK_{,Q}\dot Q\right)\nonumber\\
+&=\mpl^2\left(3H\cB_{,Q}\dot Q+Q\dot\cF\right),
+\label{eq:rhodotapp}
+\end{align}
+while
+\begin{equation}
+3H(\rho_T+p_T)
+=3H\mpl^2\left(Q\cF-\cB_{,Q}\dot Q\right).
+\label{eq:rhoppapp}
+\end{equation}
+Their sum is $\mpl^2Q(\dot\cF+3H\cF)=0$.
+
+\subsection{Acceleration equation}
+
+Combining main manuscript, Eq.~(168) and main manuscript, Eq.~(169) gives
+\begin{equation}
+\frac{\ddot a}{a}
+=-\frac{1}{6\mpl^2}
+\left[
+\rho_{\vis}+3p_{\vis}
++\mpl^2\left(Q\frac{C_T}{a^3}+2\cK-3\cB_{,Q}\dot Q\right)
+\right].
+\label{eq:accelerationfull}
+\end{equation}
+This equation displays explicitly which clock terms must overcome the positive visible-matter contribution.
+
+\section{Complete Hamiltonian derivation and lapse-operator audit}
+\label{app:Hamiltonian}
+
+The following algebraic Legendre derivation applies to the base action $S_0$. For the adopted spatial completion use main manuscript, Eq.~(80); main manuscript, Eq.~(85); main manuscript, Eq.~(89); the local specialization and its full operator derivative are in main manuscript, Sec.~VI\,L.
+
+This appendix supplies the algebra behind main manuscript, Sec.~VI. All functional derivatives are taken at fixed canonical data $(h_{ij},\pi^{ij})$ and fixed visible-sector canonical variables unless stated otherwise.
+
+\subsection{Legendre transform and absence of additional primary constraints}
+\label{app:Legendre}
+
+main manuscript, Eq.~(97) may be written as
+\begin{equation}
+\frac{2\pi^{ij}}{\mpl^2\sqrt h}
+=K^{ij}-Kh^{ij}+\cB h^{ij}.
+\label{eq:Legendrelinear}
+\end{equation}
+Taking the trace gives main manuscript, Eq.~(98) and main manuscript, Eq.~(99); substitution back into equation~\eqref{eq:Legendrelinear} gives main manuscript, Eq.~(100). The traceless relation is
+\begin{equation}
+K^{ij}_{\rm TF}
+=\frac{2}{\mpl^2\sqrt h}\pi^{ij}_{\rm TF}.
+\label{eq:KTF}
+\end{equation}
+The DeWitt kinetic matrix therefore has the GR eigenvalues on the trace and traceless subspaces and is nonsingular for $\mpl^2>0$.
+
+The normal part of the Legendre transform satisfies
+\begin{align}
+&2\pi^{ij}K_{ij}
+-\frac{\mpl^2\sqrt h}{2}
+\left(K_{ij}K^{ij}-K^2+2\cB K\right)
+\nonumber\\
+&\hspace{1.2cm}
+=\frac{2}{\mpl^2\sqrt h}
+\left(\pi_{ij}\pi^{ij}-\frac12\pi^2\right)
++\pi\cB-\frac{3\mpl^2\sqrt h}{4}\cB^2.
+\label{eq:Legendreidentity}
+\end{align}
+Adding the intrinsic-curvature, $\cK$, $\cJ$, and matter pieces proves main manuscript, Eq.~(103)--main manuscript, Eq.~(105). Because neither $\dot N$ nor $\dot N^i$ occurs and no further velocity degeneracy exists, main manuscript, Eq.~(101) is the complete gravitational primary set.
+
+\subsection{Derivation of the exact secondary lapse constraint}
+\label{app:CNderivation}
+
+Separate the local $N$-dependent part of $N\cH_\perp$ as
+\begin{equation}
+N\mathcal U(Q)
+=N\left[
+\pi\cB-\frac{3\mpl^2\sqrt h}{4}\cB^2
+-\mpl^2\sqrt h\,\cK
+\right],
+\qquad Q=N^{-1}.
+\label{eq:Ulocal}
+\end{equation}
+Since $N\partial_NQ=-Q$,
+\begin{align}
+\frac{\partial[N\mathcal U(Q)]}{\partial N}
+={}&\pi(\cB-Q\cB_{,Q})\nonumber\\
+&+\mpl^2\sqrt h\left[
+Q\cK_{,Q}-\cK
+-\frac34\cB^2
++\frac32Q\cB\cB_{,Q}
+\right].
+\label{eq:Ulocalvariation}
+\end{align}
+
+For the acceleration sector let $\varphi\equiv\eta/N$. Then
+\begin{equation}
+\delta q_i=D_i\varphi,
+\qquad
+\delta Y=\frac{2q^iD_i\varphi}{a_0^2}.
+\label{eq:qYvariation}
+\end{equation}
+The first variation of its Hamiltonian contribution is
+\begin{align}
+\delta H_J
+&=\mpl^2\int\dd^3x\sqrt h\,N
+\left[a_0^2\cJ\,\varphi
++2\cJ_{,Y}q^iD_i\varphi\right]\nonumber\\
+&=\mpl^2\int\dd^3x\sqrt h\,\eta
+\left[
+ a_0^2(\cJ-2Y\cJ_{,Y})
+-2D_i(\cJ_{,Y}q^i)
+\right]
++\delta H_{J,\partial\Sigma}.
+\label{eq:Jfirstvariation}
+\end{align}
+The surface term is
+\begin{equation}
+\delta H_{J,\partial\Sigma}
+=2\mpl^2\int_{\partial\Sigma}\dd^2x\sqrt\sigma\,
+ n_i\cJ_{,Y}q^i\eta.
+\label{eq:Jfirstboundary}
+\end{equation}
+It vanishes for fixed lapse, for the corresponding natural flux condition, or after the boundary functional appropriate to Robin data is included. Combining equations~\eqref{eq:Ulocalvariation} and \eqref{eq:Jfirstvariation} with the $N$-independent density $\cH_0$ gives main manuscript, Eq.~(109).
+
+On FLRW, $q_i=0$, $\pi=\mpl^2\sqrt h(-3H+3\cB/2)$, and $\cJ(0)=0$. main manuscript, Eq.~(109) becomes
+\begin{equation}
+-3\mpl^2\sqrt h\,H^2
++\mpl^2\sqrt h
+\left(Q\cK_{,Q}-\cK+3HQ\cB_{,Q}\right)
++\sqrt h\,\rho_{\vis}=0,
+\label{eq:CNFLRWcheck}
+\end{equation}
+which is exactly main manuscript, Eq.~(168) with the clock density main manuscript, Eq.~(170).
+
+\subsection{Exact second variation and the full functional operator}
+\label{app:Jsecondvariation}
+
+Let $\eta$ and $\zeta$ be two independent lapse variations and set
+\begin{equation}
+\varphi=\frac{\eta}{N},
+\qquad
+\psi=\frac{\zeta}{N}.
+\label{eq:varphipsi}
+\end{equation}
+Although $\delta^2\ln N=-\varphi\psi$ for variations linear in $N$, all terms proportional to this second variation cancel against the variation of the prefactor $N$. The exact mixed second variation is therefore
+\begin{equation}
+\boxed{
+\delta^2H_J[\eta,\zeta]
+=2\mpl^2\int\dd^3x\sqrt h\,N\,
+\mathsf P^{ij}D_i\varphi D_j\psi,
+}
+\label{eq:Jsecondvariation}
+\end{equation}
+where $\mathsf P^{ij}$ is main manuscript, Eq.~(110). Integrating by parts with respect to $\psi$ gives
+\begin{equation}
+\delta\cC_N^{(J)}[\eta]
+=-\frac{2\mpl^2\sqrt h}{N}
+D_i\left[N\mathsf P^{ij}D_j\left(\frac{\eta}{N}\right)\right].
+\label{eq:DeltaJexact}
+\end{equation}
+This expression is symmetric under $\eta\leftrightarrow\zeta$ when the boundary form
+\begin{equation}
+2\mpl^2\int_{\partial\Sigma}\dd^2x\sqrt\sigma\,
+N n_i\mathsf P^{ij}\left(
+\varphi D_j\psi-\psi D_j\varphi
+\right)
+\label{eq:JHessianboundary}
+\end{equation}
+vanishes.
+
+For the local part, differentiate equation~\eqref{eq:Ulocalvariation} with respect to $Q$ and then use $\delta Q=-Q^2\eta$. One obtains
+\begin{align}
+\delta\cC_N^{({\rm loc})}[\eta]
+={}&Q^3\pi\cB_{,QQ}\eta\nonumber\\
+&-\mpl^2\sqrt h\,Q^3
+\left[
+\cK_{,QQ}+\frac32\cB_{,Q}^2
++\frac32\cB\cB_{,QQ}
+\right]\eta.
+\label{eq:localHessianBeforeK}
+\end{align}
+Using $\pi/(\mpl^2\sqrt h)=3\cB/2-K$ cancels the terms proportional to $\cB\cB_{,QQ}$ and leaves
+\begin{equation}
+\delta\cC_N^{({\rm loc})}[\eta]
+=-\mpl^2\sqrt h\,Q^3
+\left(
+\cK_{,QQ}+K\cB_{,QQ}+\frac32\cB_{,Q}^2
+\right)\eta.
+\label{eq:localHessianFinal}
+\end{equation}
+Equations~\eqref{eq:DeltaJexact} and \eqref{eq:localHessianFinal} prove main manuscript, Eq.~(111) and main manuscript, Eq.~(112). Notice that the value of $\cB$ itself drops out: only its first two derivatives enter the lapse Hessian, consistently with the fact that a constant part of $\cB\Theta$ is a boundary term.
+
+\subsection{Acceleration-sector Hessian and uniform ellipticity}
+\label{app:JDiracaudit}
+
+For a stationary interpolation define
+\begin{equation}
+\bar\mu(s)\equiv1+\cJ_{,Y}(s^2).
+\label{eq:mubarraw}
+\end{equation}
+For $s>0$ let $n^i=q^i/(a_0s)$. The transverse and longitudinal eigenvalues of $\mathsf P^i{}_j$ are
+\begin{equation}
+p_\perp=\cJ_{,Y}=\bar\mu-1,
+\qquad
+p_\parallel=\cJ_{,Y}+2Y\cJ_{,YY}
+=\bar\mu-1+s\bar\mu'(s).
+\label{eq:Peigenvalues-general}
+\end{equation}
+The transverse eigenvalue has multiplicity two. Definiteness of the lapse principal symbol requires both eigenvalues to have the same nonzero sign.
+
+\begin{lemma}[Fast-tail obstruction for an unrenormalized lapse Hessian]
+\label{lem:fasttailobstruction}
+Let
+\begin{equation}
+\bar\mu(s)=1-cs^{-n}+o(s^{-n}),
+\qquad c>0,
+\qquad n>1,
+\label{eq:fasttailassumption}
+\end{equation}
+with a differentiable remainder whose logarithmic derivative is also $o(s^{-n})$. Then at sufficiently large finite $s$,
+\begin{equation}
+p_\perp=-cs^{-n}+o(s^{-n})<0,
+\qquad
+p_\parallel=(n-1)cs^{-n}+o(s^{-n})>0.
+\label{eq:fasttailobstruction}
+\end{equation}
+Thus a raw coefficient that approaches unity from below faster than $s^{-1}$ cannot give a uniformly definite lapse Hessian.
+\end{lemma}
+\begin{proof}
+Insert \cref{eq:fasttailassumption} into \cref{eq:Peigenvalues-general}. Since $s\bar\mu'(s)=ncs^{-n}+o(s^{-n})$, \cref{eq:fasttailobstruction} follows.
+\end{proof}
+
+SCFT-A uses the finite offset $\gamma_{\rm N}=1+s_{\rm N}^{-1}$ and the physical interpolation main manuscript, Eq.~(54). Writing $S\equiv s_{\rm N}$,
+\begin{equation}
+\mu_{\rm A}(s)=1-\delta_S(s),
+\qquad
+\delta_S(s)=\frac{S^2}{(1+s)(S^2+s^2)}.
+\label{eq:deltaS}
+\end{equation}
+It satisfies
+\begin{align}
+\mu_{\rm A}(s)
+&=s+\left(S^{-2}-1\right)s^2+\cO(s^3),
+&&s\to0,
+\label{eq:newmulow}\\
+\mu_{\rm A}(s)
+&=1-\frac{S^2}{s^3}+\frac{S^2}{s^4}+\cO(s^{-5}),
+&&s\to\infty.
+\label{eq:newmuhigh}
+\end{align}
+Hence the deep-MOND normalization is exact and the Newtonian correction falls as $s^{-3}$.
+
+The integral in main manuscript, Eq.~(55) has the elementary form
+\begin{equation}
+\boxed{\begin{aligned}
+\cJ_{\rm A}(Y)={}&-\frac{Y}{S+1}
++\frac{S^3}{(S+1)(S^2+1)}
+\Bigg[
+2\ln(1+\sqrt Y)
+-\ln\left(1+\frac{Y}{S^2}\right)\\
+&\hspace{4.5cm}
+-2S\arctan\left(\frac{\sqrt Y}{S}\right)
+\Bigg].
+\end{aligned}}
+\label{eq:benchmarkJclosed}
+\end{equation}
+Direct differentiation gives
+\begin{equation}
+1+\cJ_{{\rm A},Y}(s^2)
+=\frac{\mu_{\rm A}(s)}{\gamma_{\rm N}}.
+\label{eq:rawmu-relation}
+\end{equation}
+The small-$Y$ expansion is
+\begin{equation}
+\cJ_{\rm A}(Y)
+=-Y+\frac{2S}{3(S+1)}Y^{3/2}
+-\frac{S-1}{2S}Y^2+\cO(Y^{5/2}),
+\label{eq:newJsmall}
+\end{equation}
+so the composite in the acceleration components is $C^2$ but not $C^3$ at the origin.
+
+Define
+\begin{equation}
+f_S(s)\equiv\mu_{\rm A}(s)+s\mu_{\rm A}'(s).
+\label{eq:fS}
+\end{equation}
+Equation~\eqref{eq:rawmu-relation} yields
+\begin{equation}
+\mathsf G^{ij}
+=g_\perp(h^{ij}-n^in^j)+g_\parallel n^in^j,
+\quad
+g_\perp=1-\frac{\mu_{\rm A}}{\gamma_{\rm N}},
+\quad
+g_\parallel=1-\frac{f_S}{\gamma_{\rm N}}.
+\label{eq:Geigendecomposition}
+\end{equation}
+The transverse bound is
+\begin{equation}
+g_\perp\ge\frac{1}{S+1}.
+\label{eq:gperpbound}
+\end{equation}
+Moreover,
+\begin{equation}
+f_S-1
+=\delta_S\left[
+\frac{2s^2}{S^2+s^2}-\frac{1}{1+s}
+\right]
+\le\frac{2S^2s}{(S^2+s^2)^2}.
+\label{eq:fSbound1}
+\end{equation}
+With $x=s/S$,
+\begin{equation}
+\frac{2S^2s}{(S^2+s^2)^2}
+=\frac{2x}{S(1+x^2)^2}
+\le\frac{9}{8\sqrt3\,S},
+\label{eq:fSbound2}
+\end{equation}
+where the maximum occurs at $x=1/\sqrt3$. Since $\gamma_{\rm N}=1+S^{-1}$,
+\begin{equation}
+g_\parallel
+\ge\frac{1-9/(8\sqrt3)}{S+1}>0.
+\label{eq:gparallelbound}
+\end{equation}
+These estimates prove the uniform lower bound main manuscript, Eq.~(114) and exclude any finite-acceleration signature change of the adopted lapse principal symbol.
+
+The raw weak-field coefficient in the action is $\bar\mu=\mu_{\rm A}/\gamma_{\rm N}$. Therefore
+\begin{equation}
+\bm\nabla\cdot\left(\frac{\mu_{\rm A}}{\gamma_{\rm N}}\bm\nabla\Phi\right)
++\widehat m_{\rm loc}^2\Phi
+=4\pi G_*\rho_b
+\label{eq:rawPoisson}
+\end{equation}
+becomes
+\begin{equation}
+\bm\nabla\cdot\left(\mu_{\rm A}\bm\nabla\Phi\right)
++m_{\rm loc}^2\Phi
+=4\pi G_{\rm N}\rho_b,
+\qquad
+G_{\rm N}=\gamma_{\rm N}G_*,
+\qquad
+m_{\rm loc}^2=\gamma_{\rm N}\widehat m_{\rm loc}^2.
+\label{eq:physicalPoisson}
+\end{equation}
+Thus the finite offset that preserves definiteness of the lapse Hessian leaves the intended physical MOND interpolation unchanged after calibration of the locally measured Newton constant.
+
+\subsection{Coercivity, invertibility, and boundary data}
+\label{app:coercivity}
+
+For $\eta=N\varphi$ and $\zeta=N\psi$, equations~\eqref{eq:Jsecondvariation} and \eqref{eq:localHessianFinal} give
+\begin{equation}
+-\int\dd^3x\,\zeta\,\Delta_N\eta
+=\mpl^2\int\dd^3x\sqrt h\,N
+\left[Q^2\Xi\,\varphi\psi
++2\mathsf G^{ij}D_i\varphi D_j\psi\right].
+\label{eq:Deltaquadraticraw}
+\end{equation}
+Multiplying by the positive lapse is an isomorphism on any domain with the bounds in main manuscript, Eq.~(117), so the kernel of $\Delta_N$ is isomorphic to the kernel of $\mathscr L_N$. For the boundary domains in Definition~main manuscript, Sec.~VI.1, integration by parts yields main manuscript, Eq.~(116), including its Robin surface term when $\sigma_R>0$. The estimate~main manuscript, Eq.~(119) follows from $Q\ge N_{\max}^{-1}$ and main manuscript, Eq.~(114).
+
+Let $\mathcal V$ be the closure of smooth lapse variations satisfying the selected boundary data under the energy norm
+\begin{equation}
+\|\varphi\|_{\mathcal V}^2
+=\int\dd^3x\sqrt h\left(\varphi^2+D_i\varphi D^i\varphi\right).
+\label{eq:energynorm}
+\end{equation}
+The bilinear form is bounded and coercive on $\mathcal V$. Hence, for every source in $\mathcal V^*$, there exists a unique $\varphi\in\mathcal V$ satisfying the weak lapse or multiplier equation. In particular,
+\begin{equation}
+\ker\mathscr L_N=\{0\},
+\qquad
+\ker\Delta_N=\{0\}
+\label{eq:trivialkernel}
+\end{equation}
+on a Dirac-regular component. Compact leaves have no residual homogeneous zero mode because the positive $Q\Xi$ term controls constants. Dirichlet data control the boundary directly. Nonnegative Robin data add the nonnegative surface contribution $2\int_{\partial\Sigma}\sqrt\sigma\,\sigma_R\varphi^2$. On an asymptotically homogeneous leaf the decay condition removes the boundary flux and the positive local term controls the weighted $L^2$ norm.
+
+If $\Xi$ merely vanishes, coercivity must be reconsidered rather than inferred from the gradient term. For example, on a compact leaf with pure Neumann data a constant zero mode appears when $\Xi=0$. This is why main manuscript, Eq.~(117) uses a strict lower bound.
+
+\subsection{Constraint matrix, multiplier equation, and bifurcation branches}
+\label{app:constraintmatrix}
+
+The local secondary density $\cH_i$ alone does not transform the lapse or shift. The primary-extended density $\widetilde{\cH}_i$ in main manuscript, Eq.~(121), equivalently the smeared generator~main manuscript, Eq.~(120), does, and it obeys
+\begin{align}
+\{\mathcal D[\bm\xi],\mathcal D[\bm\zeta]\}
+&=\mathcal D[[\bm\xi,\bm\zeta]],
+\label{eq:DDalgebra}\\
+\{P_N[\alpha],\mathcal D[\bm\xi]\}
+&=-P_N[\Lie_{\bm\xi}\alpha],
+\qquad
+\{C[\beta],\mathcal D[\bm\xi]\}
+=-C[\Lie_{\bm\xi}\beta],
+\label{eq:Dscalaralgebra}
+\end{align}
+where $[\bm\xi,\bm\zeta]^i=\xi^j\partial_j\zeta^i-\zeta^j\partial_j\xi^i$. The positive sign in the first equation follows directly from the canonical brackets and the generator main manuscript, Eq.~(120). The primary shift constraints commute with the lapse chain and close with the spatial generator in the standard way.
+
+The scalar block is main manuscript, Eq.~(127), with $\Omega$ fixed exactly by main manuscript, Eq.~(125) and main manuscript, Eq.~(126). Multiplication verifies directly that main manuscript, Eq.~(128) is its two-sided inverse. Therefore the scalar block has full rank whenever $\Delta_N$ does. Expanding every derivative of the spatial delta distribution in $\Omega$ would lengthen the expression but cannot alter this algebraic result; no bracket has been omitted from the classification.
+
+If $\Delta_N$ has an isolated finite-dimensional kernel with basis $z_A$, the multiplier equation has a solution only if
+\begin{equation}
+0=\langle z_A,\scrS\rangle
+\equiv\int\dd^3x\,z_A\scrS.
+\label{eq:Fredholmcondition}
+\end{equation}
+These are the tertiary conditions main manuscript, Eq.~(142). Their preservation either fixes the components of $\lambda_N$ along the kernel, creates further constraints, reveals an additional gauge invariance, or shows that the singular branch has no consistent evolution. The regular and singular branches therefore cannot be joined by simply continuing the three-mode formula through a zero eigenvalue. On a noncompact domain, zero may instead enter the essential spectrum; then the inverse ceases to be bounded and the same regular-branch theorem fails even without an $L^2$ zero eigenfunction.
+
+\subsection{SCFT-A expression for the local rank scalar}
+\label{app:XiA}
+
+Differentiating main manuscript, Eq.~(41) and main manuscript, Eq.~(42) gives
+\begin{align}
+\cK_{{\rm A},QQ}
+={}&(1-W)\cK_{{\rm DBI},QQ}+W\cK_{d,QQ}
++2W'(\cK_{d,Q}-\cK_{{\rm DBI},Q})\nonumber\\
+&+W''(\cK_d-\cK_{\rm DBI}),
+\label{eq:KAsecond}\\
+\cB_{{\rm A},Q}
+={}&b_d\left[W+(Q-Q_d)W'\right],
+\label{eq:BAfirst}\\
+\cB_{{\rm A},QQ}
+={}&b_d\left[2W'+(Q-Q_d)W''\right].
+\label{eq:BAsecond}
+\end{align}
+Substitution into main manuscript, Eq.~(139) is the complete benchmark diagnostic. The switch set appearing in main manuscript, Eq.~(140) is
+\begin{equation}
+\mathcal I_{\rm sw}
+=\left[Q_L,1+\frac{3\Delta Q}{4}\right]
+\cup
+\left[1+\frac{5\Delta Q}{4},Q_R\right].
+\label{eq:switchset}
+\end{equation}
+Outside this compact set, main manuscript, Eq.~(136) applies in the unbraided regions and main manuscript, Eq.~(138) applies throughout the late plateau. The function in main manuscript, Eq.~(140) is continuous on $\mathcal I_{\rm sw}$, so its minimum exists. A parameter point with $\xi_{\rm sw}>0$ supplies a connected coercive segment. If $\xi_{\rm sw}\le0$, only the sufficient absolute-value estimate has failed; the exact quantity $\Xi_{\rm A}(Q,K)$ or the spectrum of $\mathscr L_N$ must then be used.
+
+\subsection{Covariant gauge fixing}
+
+In the covariant theory, let $\mathcal H_\perp^{\rm cov}$ denote the generator of normal diffeomorphisms before unitary gauge is imposed and choose the gauge condition $\chi_T=T-t=0$. Its Faddeev--Popov bracket is proportional to
+\begin{equation}
+\{\chi_T,\mathcal H_\perp^{\rm cov}[\epsilon]\}
+\propto\epsilon\,n^\mu\nabla_\mu T
+=\epsilon Q.
+\label{eq:FPclock}
+\end{equation}
+It is nonzero on the domain $Q>0$. The gauge is therefore locally admissible, and the Stueckelberg restoration of time diffeomorphisms preserves the three physical modes found in main manuscript, result~VI.2. This argument does not extend across a zero of $Q$ or a degenerate lapse; such points are gauge-domain boundaries and must be treated in another chart, if they are physically reachable at all.
+
+\section{Controlled asymptotic regimes of \texorpdfstring{$\cK(Q)$}{K(Q)}}
+\label{app:Kasymptotics}
+
+\subsection{General series near the matter point}
+
+Let
+\begin{equation}
+\cK(Q)=\sum_{n=2}^{\infty}\frac{\kappa_n}{n!}(Q-Q_m)^n,
+\qquad
+\kappa_2=\kappa_m>0.
+\label{eq:Kseriesfull}
+\end{equation}
+For negligible braiding the current equation is
+\begin{equation}
+\sum_{n=2}^{\infty}\frac{\kappa_n}{(n-1)!}(\delta Q)^{n-1}
+=\frac{C_T}{a^3}.
+\label{eq:Kseriescurrent}
+\end{equation}
+Lagrange inversion yields the series in main manuscript, Eq.~(193). The exact density and pressure can also be written as
+\begin{align}
+\rho_T&=\mpl^2\sum_{n=2}^{\infty}
+\frac{\kappa_n}{n!}
+\left[nQ_m(\delta Q)^{n-1}+(n-1)(\delta Q)^n\right],
+\label{eq:rhoseries}\\
+p_T&=\mpl^2\sum_{n=2}^{\infty}
+\frac{\kappa_n}{n!}(\delta Q)^n.
+\label{eq:pseries}
+\end{align}
+Every analytic $\cK$ with a regular positive-curvature extremum therefore has the same leading dust behavior. The higher derivatives determine how rapidly the approximation fails toward early times and how the branch connects to the acceleration regime.
+
+\subsection{DBI sectors used in SCFT-A}
+
+Writing $x=Q-1$, the DBI function~main manuscript, Eq.~(37) has
+\begin{equation}
+\cK_{{\rm DBI},Q}
+=\frac{\kappa_m x}{\sqrt{1-\lambda_Dx^2}},
+\qquad
+\cK_{{\rm DBI},QQ}
+=\frac{\kappa_m}{(1-\lambda_Dx^2)^{3/2}}>0.
+\label{eq:benchmarkDBIderivatives}
+\end{equation}
+Its Taylor series is
+\begin{equation}
+\cK_{\rm DBI}
+=\frac{\kappa_m}{2}x^2
++\frac{\kappa_m\lambda_D}{8}x^4
++\frac{\kappa_m\lambda_D^2}{16}x^6
++\cO(x^8),
+\label{eq:benchmarkDBIseries}
+\end{equation}
+so $\cK_{,QQ}(1)=\kappa_m$ exactly. The compact window~main manuscript, Eq.~(34) changes the low/intermediate theory only for $Q_L<Q<Q_R$ and makes the braid vanish to all orders at $Q_R$. The seed DBI profile is used exactly on the exterior interval $Q_b\le Q\le Q_L$ and as the matching function at $Q_R$. The adopted kinetic function replaces the central neighborhood by its plateau and convex interpolation. Solving the current in the condensate-side $W=0$ region gives main manuscript, Eq.~(201)--main manuscript, Eq.~(205). The actual high-charge cold hierarchy is supplied by the exponential continuation main manuscript, Eq.~(411); main manuscript, Eq.~(413).
+
+\subsection{Sound-speed hierarchy}
+
+For the unbraided kinetic sector,
+\begin{equation}
+c_{\rm ad}^2
+=\frac{\cK_{,Q}}{Q\cK_{,QQ}}
+\label{eq:cadagain}
+\end{equation}
+shows that cold behavior requires a hierarchy between the first and second derivatives. A small $\cK_{,Q}$ is fixed dynamically by $C_T/a^3$, while a large positive $\cK_{,QQ}$ suppresses the sound speed. This same large curvature contributes to the local mass scale. The required hierarchy is therefore constrained by both cosmology and galaxies.
+
+\section{SCFT-A endpoint and regularity proofs}
+\label{app:benchmarkproofs}
+
+The exterior endpoint identities below are unchanged. The local convex matching proof is now main manuscript, Sec.~V\,D, and the adopted acceleration-tip construction is main manuscript, Eq.~(58); main manuscript, Eq.~(157).
+
+\subsection{Smoothness and branch placement of the fixed clock functions}
+
+The flat function $f$ in main manuscript, Eq.~(33) is $C^\infty$ and every derivative vanishes at its joining point. Therefore $S$ is $C^\infty$, equals zero with all derivatives for arguments at or below zero, and equals one with all derivatives of $1-S$ for arguments at or above one. The product $W$ in main manuscript, Eq.~(34) is consequently $C^\infty$, identically zero outside $(Q_L,Q_R)$, and identically one on the plateau~main manuscript, Eq.~(36) containing $Q_d$.
+
+For every $Q\in\mathcal D_{\rm DBI}$, the DBI radicand is positive:
+\begin{equation}
+1-\lambda_D(Q-1)^2>0.
+\label{eq:benchmarkDBIreal}
+\end{equation}
+Condition~main manuscript, Eq.~(39) also puts the closure of the window strictly inside $\mathcal D_{\rm DBI}$. Hence the DBI-based low/intermediate definition is smooth up to $Q_R$. Above $Q_R$, smoothness on the larger final domain $\mathcal D_Q$ follows from the matched primordial continuation, not from continuing the DBI square root beyond its real interval.
+
+At $Q=1$, $W$ vanishes on an open neighborhood, so the seed $\cK_{\rm A}$ equals the DBI function and has $\cB=0$ there. The adopted $\Kt$ instead vanishes on its central plateau; its endpoint identities follow from the convex local construction. At $Q=Q_d$, $W=1$ on an open neighborhood, so the benchmark equals $\cK_d$ and $b_d(Q-Q_d)$ there. Direct differentiation proves main manuscript, Eq.~(62)--main manuscript, Eq.~(64). At $Q\ge Q_R$, $W$ again vanishes identically, so the braid is absent. The kinetic function beyond this point is the matched high-charge continuation in main manuscript, Sec.~XVI\,B, not the DBI square root.
+
+The placement $Q_d>Q_m$ also removes a kinematic obstruction that would be present in an opposite-side construction. For finite $C_T>0$, the current equation requires $F=C_Ta^{-3}>0$. At the condensate, the benchmark has
+\begin{equation}
+F(Q_m,H)=\cK_{,Q}(Q_m)+3H\cB_{,Q}(Q_m)=0
+\label{eq:benchmarkcrossingobstruction}
+\end{equation}
+for every finite $H$. A continuous finite-charge solution therefore cannot pass through $Q_m$. Placing the late point at $Q_d=1+\Delta Q$ avoids building an impossible finite-charge crossing into the action.
+
+\subsection{Late fixed-point and reciprocal checks}
+
+At $Q=Q_d$, direct substitution gives
+\begin{equation}
+3H_d^2+\cK(Q_d)=0,
+\qquad
+\cK_{,Q}(Q_d)+3H_d\cB_{,Q}(Q_d)
+=-3H_db_d+3H_db_d=0.
+\label{eq:benchmarkdSproof}
+\end{equation}
+Moreover, because $\cB_{,QQ}(Q_d)=0$,
+\begin{equation}
+\cD_d
+=\cK_{,QQ}(Q_d)+3H_d\cB_{,QQ}(Q_d)
+=\kappa_d.
+\label{eq:benchmarkDproof}
+\end{equation}
+The selected sign assumptions $b_d>0$ and $-3b_d^2/2<\kappa_d<0$ imply $\Xi_d>0$. The full reciprocal limit additionally uses $Q_d\kappa_d+3H_db_d>0$, established with $Q_db_d<2H_d$. The additional bound $Q_db_d<2H_d$ is the scalar-gradient condition derived in main manuscript, Sec.~XII\,I. Finally, main manuscript, Eq.~(213) becomes
+\begin{equation}
+\Phi_{,Q}(Q_d)=\kappa_d+\frac32b_d^2>0,
+\label{eq:benchmarkPhiproof}
+\end{equation}
+so the zero of the reduced late-branch function is simple. The source-free scalar kinetic and gradient signs are fixed by main manuscript, Eq.~(285).
+
+\subsection{Acceleration-function regularity}
+
+The unregulated seed acceleration function is given equivalently by main manuscript, Eq.~(55) and \eqref{eq:benchmarkJclosed}. Its derivative is
+\begin{equation}
+\cJ_{{\rm A},Y}(Y)
+=\frac{1}{\gamma_{\rm N}}
+\left[
+1-\frac{1}{(1+\sqrt Y)(1+Y/s_{\rm N}^2)}
+\right]-1.
+\label{eq:benchmarkJderivatives}
+\end{equation}
+At $Y=0$ this equals $-1$. Although the separated scalar derivative $\cJ_{,YY}$ diverges as $Y^{-1/2}$, main manuscript, Eq.~(234) has the finite limit $-2\delta_{ij}$ in acceleration components. The exact eigenvalue decomposition~\eqref{eq:Geigendecomposition} and bound~main manuscript, Eq.~(114) prove more than pointwise $C^2$ regularity: the grouped Hessian has one sign and a strictly positive inverse-ellipticity margin for every finite acceleration.
+
+\section{Weak-field variation}
+\label{app:weakfield}
+This appendix records the two-derivative stationary reference calculation. The completed action has the coupled stationary equations and scale restriction stated in the main manuscript; equal potentials and the seed AQUAL limit are not general properties of that completed system.
+
+\subsection{Clock acceleration}
+
+For the metric~main manuscript, Eq.~(215) and stationary $T=t$,
+\begin{equation}
+u_0=-N,
+\qquad
+u_i=0,
+\qquad
+\cA_i=D_i\ln N=\partial_i\Phi+\cO(\Phi^2).
+\label{eq:weakaccapp}
+\end{equation}
+The acceleration action reduces at leading order to
+\begin{equation}
+S_J\simeq
+-\mpl^2\int\dd t\dd^3x\,a_0^2
+\cJ\!\left(\frac{|\bm\nabla\Phi|^2}{a_0^2}\right).
+\label{eq:SJweak}
+\end{equation}
+Its variation with respect to $\Phi$ is
+\begin{equation}
+\delta S_J
+=2\mpl^2\int\dd t\dd^3x\,
+\delta\Phi\,
+\bm\nabla\cdot\left(\cJ_{,Y}\bm\nabla\Phi\right),
+\label{eq:SJvariation}
+\end{equation}
+up to a boundary term. Adding the Einstein weak-field action therefore replaces $\nabla^2\Phi$ by
+\begin{equation}
+\bm\nabla\cdot\left[(1+\cJ_{,Y})\bm\nabla\Phi\right].
+\label{eq:poissonreplacement}
+\end{equation}
+
+\subsection{Local mass term from \texorpdfstring{$\cK$}{K}}
+
+For the formal zero-charge reference background, let $Q_\ell=1$ and impose
+\begin{equation}
+\cK(1)=\cK_{,Q}(1)=0.
+\label{eq:localKzero}
+\end{equation}
+Since $Q=1-\Phi+\cO(\Phi^2)$,
+\begin{equation}
+\cK(Q)=\frac12\cK_{,QQ}(1)\Phi^2+\cO(\Phi^3).
+\label{eq:Kweakexpand}
+\end{equation}
+With the normalization of main manuscript, Eq.~(59), the action-level modified-Poisson equation contains
+\begin{equation}
+\widehat m_{\rm loc}^2=\frac12\cK_{,QQ}(1)
+\label{eq:mloc}
+\end{equation}
+when stationary braiding corrections vanish and spatial-completion contributions are omitted. On the adopted exact plateau $\Kt_{,QQ}(1)=0$, so this particular local mass coefficient vanishes. The mass coefficient in the physically normalized main manuscript, Eq.~(224) is $m_{\rm loc}^2=\gamma_{\rm N}\widehat m_{\rm loc}^2$. For the common parametrization $\cK=\mu^2(Q-1)^2$, this gives $\widehat m_{\rm loc}^2=\mu^2$, agreeing with the relativistic-khronon weak-field limit.
+
+Equation~\eqref{eq:mloc} is therefore the mass coefficient of the exact $Q_\ell=1$ reference branch. A physical local solution matched to $C_T>0$ has asymptotic $Q=\bar Q(t)>1$ and generally nonzero $H$; its effective Helmholtz coefficient is a calculable combination of $\cK$, $\cB$, and the background equations evaluated there. The reference formula demonstrates the cosmology--galaxy linkage but does not replace that matched calculation.
+
+\subsection{Spherical deep-MOND solution}
+
+Outside a spherical baryonic mass $M_b$, main manuscript, Eq.~(230) integrates once to
+\begin{equation}
+\frac{|\Phi'|}{a_0}\Phi'
+=\frac{G_{\rm N}M_b}{r^2}.
+\label{eq:sphericalmond}
+\end{equation}
+On the attractive branch,
+\begin{equation}
+|\Phi'|=\frac{\sqrt{G_{\rm N}M_ba_0}}{r},
+\qquad
+v_c^4=G_{\rm N}M_ba_0.
+\label{eq:BTFR}
+\end{equation}
+Thus the baryonic Tully--Fisher scaling follows in the ideal deep-MOND, negligible-$m_{\rm loc}$ regime. 
+
+\subsection{Lensing at leading order}
+
+The traceless spatial Einstein equation has no leading scalar anisotropic stress on the stationary unitary branch, yielding $\Phi=\Psi$. Null geodesics then respond to $\Phi+\Psi=2\Phi$, so the force potential and lensing potential agree. This equality is the leading stationary result for the branch defined in this appendix.
+
+\section{Closed homogeneous system}
+\label{app:closedbackground}
+
+For the fixed functions $\cK(Q)$ and $\cB(Q)$, the homogeneous equations form the closed system
+\begin{align}
+3\mpl^2H^2&=\rho_{\vis}+\mpl^2\left(QC_Ta^{-3}-\cK\right),
+\label{eq:closed1}\\
+\cK_{,Q}+3H\cB_{,Q}&=C_Ta^{-3},
+\label{eq:closed2}\\
+\dot\rho_A+3H(\rho_A+p_A)&=0
+\quad\text{for each visible species }A.
+\label{eq:closed3}
+\end{align}
+Together with the pressure in main manuscript, Eq.~(171), these equations determine the homogeneous evolution without introducing an independent dark-density continuity equation. Setting $\rho_{\vis}=0$ gives the algebraic and differential forms used for the global SCFT-A benchmark in main manuscript, Eq.~(422); main manuscript, Eq.~(424).
+\section{Notation}
+\label{app:notation}
+
+The principal symbols used throughout the paper are collected here. Dimensions refer to units with $c=\hbar=1$.
+
+\begin{description}[style=nextline,leftmargin=3.2cm,labelwidth=2.8cm,font=\normalfont\bfseries]
+\item[$g_{\mu\nu}$] Universal Lorentzian metric and gravitational field read by all visible matter and tensor waves; dimensionless.
+\item[$T$] Scalar gravitational clock field; dimension of time.
+\item[$Q$] Clock norm $\sqrt{-g^{\mu\nu}\nabla_\mu T\nabla_\nu T}$; dimensionless.
+\item[$u_\mu$] Future-directed unit normal $-\nabla_\mu T/Q$; dimensionless.
+\item[$h_{\mu\nu}$] Clock-orthogonal spatial metric $g_{\mu\nu}+u_\mu u_\nu$; dimensionless.
+\item[$\Theta$] Expansion $\nabla_\mu u^\mu$; dimension time$^{-1}$.
+\item[$\cA_\mu$] Clock-congruence acceleration $u^\nu\nabla_\nu u_\mu$; dimension time$^{-1}$.
+\item[$Y$] Acceleration invariant $\cA_\mu\cA^\mu/a_0^2$; dimensionless.
+\item[$\cK(Q)$] Kinetic/condensate function controlling clock density and stiffness; dimension time$^{-2}$.
+\item[$\cB(Q)$] Braiding function coupling clock norm to expansion; dimension time$^{-1}$.
+\item[$\cJ(Y)$] Dimensionless acceleration function whose Hessian enters $\Delta_N$.
+\item[$a_0$] Low-acceleration scale entering the weak-field invariant; dimension time$^{-1}$.
+\item[$s_{\rm N},\gamma_{\rm N}$] Newtonian-tail transition and $\gamma_{\rm N}=1+s_{\rm N}^{-1}$; dimensionless.
+\item[$G_*,G_{\rm N}$] Action-level and locally measured Newton couplings, $G_{\rm N}=\gamma_{\rm N}G_*$; dimension time$^2$.
+\item[$C_T$] Conserved homogeneous clock charge in $a^3\cF=C_T$; dimension time$^{-2}$.
+\item[$\mathcal N_T$] Matter proper-time interval per unit clock-field interval, $\dd t/\dd T=1/Q$; dimensionless.
+\item[$H,H_T$] Expansion rates with respect to matter proper time and clock-field time, with $H_T=H/Q$; dimension time$^{-1}$.
+\item[$Q_m$] Clock-condensate value defining the matter-like regime; calibrated to $Q_m=1$ in SCFT-A.
+\item[$Q_d,H_d$] Displaced late clock value $Q_d=1+\Delta Q$ and de Sitter expansion rate; dimensions $1$ and time$^{-1}$.
+\item[$Q_-,Q_+$] Reference DBI chart boundaries in main manuscript, Eq.~(40); the adopted high-charge continuation has no boundary at $Q_+$; dimensionless.
+\item[$\Delta Q$] Positive separation $Q_d-Q_m$ and lower/plateau width scale of the compact braid window; dimensionless.
+\item[$\nu_{\rm A}$] Upper-switch width constant in main manuscript, Eq.~(34); fixed to $30$ for the global benchmark; dimensionless.
+\item[$\lambda_D$] DBI shape parameter constrained by main manuscript, Eq.~(39); dimensionless.
+\item[$\etaR$] Constant intrinsic spatial-curvature-square coefficient $1/(2\kap)$; dimension time$^2$.
+\item[$\kappa_m,\kappa_d$] Seed matter-point stiffness and late kinetic curvature; the completed plateau has zero stiffness at $Q=1$; dimension time$^{-2}$.
+\item[$b_d$] Late braiding slope $\cB_{,Q}(Q_d)$; dimension time$^{-1}$.
+\item[$\mu_{\rm A}(s)$] Physical SCFT-A interpolation $1-[(1+s)(1+s^2/s_{\rm N}^2)]^{-1}$; dimensionless.
+\item[$\Xi$] Local lapse-Hessian scalar $\cK_{,QQ}+K\cB_{,QQ}+3\cB_{,Q}^2/2$; dimension time$^{-2}$.
+\item[$\mathcal W_s$] FLRW scalar momentum-constraint coefficient $2H-Q\cB_{,Q}$; dimension time$^{-1}$.
+\item[$\cD_s,\Xi_s$] Combinations $\cK_{,QQ}+3H\cB_{,QQ}$ and $\cD_s+3\cB_{,Q}^2/2$; dimension time$^{-2}$.
+\item[$\mathcal C_s$] Reduced scalar-gradient numerator $-\dot{\mathcal W}_s+H\mathcal W_s-\mathcal W_s^2/2$; dimension time$^{-2}$.
+\item[$\sigma_J$] Homogeneous acceleration coefficient $\Sigma_{\rm A}(Q)$, equal to one on the local and late plateaux; dimensionless.
+\item[$r_d,\chi_d$] Stable-endpoint variables $Q_db_d/H_d$ and $-\kappa_d/b_d^2$; dimensionless.
+\item[$\mathsf P^{ij},\mathsf G^{ij}$] Lapse-gradient Hessian and its positive sign reversal, $\mathsf G=-\mathsf P$; dimensionless.
+\item[$\mathscr L_N$] Coercive scalar representative of the functional lapse operator; dimension time$^{-2}$.
+\item[$\Delta_N$] Functional derivative of the lapse constraint; differential operator.
+\item[$Q_s,F_s,c_s^2$] Reference-action source-free FLRW scalar coefficients; the completed action uses the distinct $K_p,V_p$ coefficients in the main manuscript.
+\end{description}
+
+\section{Complete scalar reduction and infrared audit}
+\label{app:scalarfull}
+
+This appendix records the base-action $S_0$ derivation. The completed scalar coefficients replacing it are main manuscript, Eq.~(243); the exact local-transition proof is main manuscript, result~XIII.1.
+
+This appendix supplies the algebra behind main manuscript, Sec.~XII. It is included so that the reduced coefficients can be checked from the fixed action without importing a model-dependent result from another theory.
+
+\subsection{ADM coefficient map}
+
+On a proper-time FLRW background the unitary-gauge gravity--clock Lagrangian, before the acceleration term is added, is
+\begin{equation}
+L_{\rm ADM}
+=\frac{\mpl^2}{2}
+\left[\mathcal R+\mathcal S-K^2+2\cK(Q)+2\cB(Q)K\right],
+\qquad
+Q=\frac{q(t)}{N},
+\label{eq:scalarADMmap}
+\end{equation}
+where $\mathcal S\equiv K_{ij}K^{ij}$ and $q(t)=\dot{\bar T}(t)$. Treating $(N,K,\mathcal S,\mathcal R)$ as independent ADM arguments during differentiation gives
+\begin{align}
+L_{\mathcal S}&=\frac{\mpl^2}{2},
+&L_{KK}&=-\mpl^2,
+\nonumber\\
+L_{K N}&=-\mpl^2Q\cB_{,Q},
+&L_{\mathcal R}&=\frac{\mpl^2}{2},
+\label{eq:EFTderivatives1}\\
+2L_N+L_{NN}
+&=\mpl^2Q^2\left(\cK_{,QQ}+3H\cB_{,QQ}\right)
+=\mpl^2Q^2\cD_s.
+\label{eq:EFTderivatives2}
+\end{align}
+The ADM degeneracy combination is
+\begin{equation}
+L_{KK}+2L_{\mathcal S}=0,
+\label{eq:ADMdegeneracyquadratic}
+\end{equation}
+so the scalar shift remains a constraint rather than acquiring a quadratic kinetic term. The momentum-constraint coefficient is
+\begin{equation}
+L_{KN}+4HL_{\mathcal S}
+=\mpl^2\left(2H-Q\cB_{,Q}\right)
+=\mpl^2\mathcal W_s.
+\label{eq:EFTWmap}
+\end{equation}
+These identities reproduce the general single-field kinetic-gravity-braiding/ADM map \cite{Kobayashi2011,Tsujikawa2015}. The nonprojectable acceleration term lies outside the minimal $L(N,K,\mathcal S,\mathcal R)$ list but is elementary on FLRW: since $D_i\bar N=0$,
+\begin{equation}
+Y=\frac{(\partial\alpha)^2}{a^2a_0^2}+\cO(3),
+\qquad
+-\mpl^2a_0^2\cJ(Y)
+=\mpl^2\sigma_J\frac{(\partial\alpha)^2}{a^2}+\cO(3).
+\label{eq:JquadraticFLRW}
+\end{equation}
+This is the higher-spatial-derivative extension of the standard single-field ADM action \cite{Tsujikawa2015}.
+
+\subsection{Geometric expansion}
+
+To first order,
+\begin{align}
+\delta K^i{}_j
+&=\left(\dot\zeta-H\alpha\right)\delta^i{}_j
+-\frac{1}{a^2}\partial^i\partial_j\psi,
+\label{eq:deltaKijscalar}\\
+\delta K
+&=3\left(\dot\zeta-H\alpha\right)
+-\frac{\partial^2\psi}{a^2},
+\label{eq:deltaKscalar}\\
+\delta_1\mathcal R
+&=-\frac{4}{a^2}\partial^2\zeta,
+\qquad
+\delta_2\mathcal R
+=-\frac{2}{a^2}\left[(\partial\zeta)^2-4\zeta\partial^2\zeta\right].
+\label{eq:deltaRscalar}
+\end{align}
+The clock norm obeys
+\begin{equation}
+Q=\frac{q}{1+\alpha}
+=Q\left(1-\alpha+\alpha^2\right)+\cO(3),
+\label{eq:Qalphaexpansion}
+\end{equation}
+where the unperturbed $Q$ on the right-hand side is $q(t)$. Substitution into \cref{eq:scalarADMmap}, use of the two background equations, and integration by parts give main manuscript, Eq.~(261). No background reconstruction or subhorizon approximation is used.
+
+For a compact verification, define
+\begin{equation}
+u\equiv\frac{\partial^2\psi}{a^2},
+\qquad
+v\equiv\frac{\partial^2\zeta}{a^2},
+\qquad
+A_s\equiv Q^2\cD_s-6H^2+6HQ\cB_{,Q}.
+\label{eq:compactscalarvariables}
+\end{equation}
+Then the part of the Lagrangian needed for the constraints is
+\begin{equation}
+\frac{\mathcal L_s^{(2)}}{\mpl^2a^3}
+=-3\dot\zeta^2+\mathcal W_s\alpha(3\dot\zeta-u)
++2\dot\zeta u+\frac12A_s\alpha^2-2\alpha v
++\frac{(\partial\zeta)^2}{a^2}
++\sigma_J\frac{(\partial\alpha)^2}{a^2}.
+\label{eq:compactunreducedscalar}
+\end{equation}
+Variation with respect to $u$ yields main manuscript, Eq.~(262). In Fourier space, variation with respect to $\alpha$ yields
+\begin{equation}
+\left(A_s+2\sigma_Jx\right)\alpha
++3\mathcal W_s\dot\zeta-\mathcal W_su+2x\zeta=0.
+\label{eq:compactalphaequation}
+\end{equation}
+The key exact identity is
+\begin{equation}
+3\mathcal W_s^2+2A_s
+=2Q^2\left(\cD_s+\frac32\cB_{,Q}^2\right)
+=2Q^2\Xi_s.
+\label{eq:keyscalaridentity}
+\end{equation}
+main manuscript, Eq.~(262), \eqref{eq:compactalphaequation}, and \eqref{eq:keyscalaridentity} immediately give main manuscript, Eq.~(264); main manuscript, Eq.~(266).
+
+\subsection{Reduction and integration by parts}
+
+After substituting $\alpha=2\dot\zeta/\mathcal W_s$, all dependence on $u$ cancels identically. For one real Fourier mode,
+\begin{equation}
+\frac{\mathcal L_s^{(2)}}{\mpl^2a^3}
+=\frac{2\left(Q^2\Xi_s+2\sigma_Jx\right)}{\mathcal W_s^2}\dot\zeta^2
++\frac{4x}{\mathcal W_s}\zeta\dot\zeta+x\zeta^2.
+\label{eq:scalarbeforeIBP}
+\end{equation}
+Since $a^3x=ak^2$,
+\begin{equation}
+\frac{\dd}{\dd t}\left(\frac{a^3x}{\mathcal W_s}\right)
+=a^3x\left(\frac{H}{\mathcal W_s}
+-\frac{\dot{\mathcal W}_s}{\mathcal W_s^2}\right).
+\label{eq:scalarIBPidentity}
+\end{equation}
+Therefore
+\begin{equation}
+\int\dd t\,a^3\frac{4x}{\mathcal W_s}\zeta\dot\zeta
+=-2\int\dd t\,a^3x
+\left(\frac{H}{\mathcal W_s}
+-\frac{\dot{\mathcal W}_s}{\mathcal W_s^2}\right)\zeta^2,
+\label{eq:scalarcrossIBP}
+\end{equation}
+up to a boundary term. Combining this with the last term in \cref{eq:scalarbeforeIBP} gives
+\begin{equation}
+1-\frac{2H}{\mathcal W_s}
++\frac{2\dot{\mathcal W}_s}{\mathcal W_s^2}
+=-\frac{2\mathcal C_s}{\mathcal W_s^2},
+\label{eq:Csidentity}
+\end{equation}
+which proves main manuscript, Eq.~(267); main manuscript, Eq.~(268); main manuscript, Eq.~(269) including every numerical factor.
+
+The Euler--Lagrange equation is
+\begin{equation}
+\frac{\dd}{\dd t}\left(a^3Q_s\dot\zeta_{\bm k}\right)
++a^3F_s\frac{k^2}{a^2}\zeta_{\bm k}=0.
+\label{eq:scalarEOMexact}
+\end{equation}
+The Legendre transformation of main manuscript, Eq.~(267) gives main manuscript, Eq.~(276); main manuscript, Eq.~(277); hence the sign conditions in main manuscript, result~XII.4 are both necessary and sufficient for positivity of the two quadratic terms on that patch.
+
+\subsection{Late-endpoint algebra}
+
+At the exact endpoint $\dot H=\dot Q=0$, $\cB_{,Q}=b_d$, and $\cB_{,QQ}=0$. Thus
+\begin{align}
+\mathcal W_{s,d}&=2H_d-Q_db_d,
+\nonumber\\
+\mathcal C_{s,d}
+&=H_d\mathcal W_{s,d}-\frac12\mathcal W_{s,d}^2
+=\frac12Q_db_d\mathcal W_{s,d},
+\label{eq:lateCsproof}\\
+\Xi_{s,d}&=\kappa_d+\frac32b_d^2.
+\label{eq:lateXiproof}
+\end{align}
+The original signs $b_d<0$, $\kappa_d>0$ make $\mathcal C_{s,d}<0$ because $\mathcal W_{s,d}>0$. The corrected region main manuscript, Eq.~(285) follows by requiring, independently,
+\begin{equation}
+b_d\mathcal W_{s,d}>0,
+\qquad
+\Xi_{s,d}>0,
+\qquad
+\frac{\mathcal W_{s,d}}{Q_d\kappa_d+3H_db_d}>0.
+\label{eq:lateinequalityderivation}
+\end{equation}
+The choice $b_d>0$, $\mathcal W_{s,d}>0$, and $\kappa_d>-3b_d^2/2$ implies $Q_d\kappa_d+3H_db_d>0$. Restricting further to $\kappa_d<0$ gives the sufficient benchmark subset in main manuscript, Eq.~(285); the inequalities do not require negative $\kappa_d$ for all possible stable reciprocal endpoints.
+
+\subsection{Independent covariant-clock Minkowski reduction}
+
+The strict Minkowski boundary is most transparently audited before imposing unitary gauge. With the variables in main manuscript, Eq.~(291), define $A_k\equiv\alpha_{\rm M}k^2+\mu^2$. The Fourier Lagrangian corresponding to main manuscript, Eq.~(294) is
+\begin{equation}
+\frac{L_k}{\mpl^2}
+=-3|\dot\Psi|^2+k^2|\Psi|^2
+-k^2(\Phi\Psi^*+\Phi^*\Psi)
++A_k|\dot\sigma-\Phi|^2.
+\label{eq:MinkowskiFourierL}
+\end{equation}
+For a real mode, the lapse equation gives
+\begin{equation}
+A_k(\dot\sigma-\Phi)=-k^2\Psi.
+\label{eq:MinkowskiLapseConstraint}
+\end{equation}
+The canonical momenta are
+\begin{equation}
+P_\Psi=-6\mpl^2\dot\Psi,
+\qquad
+P_\sigma=2\mpl^2A_k(\dot\sigma-\Phi),
+\qquad
+P_\Phi=0.
+\label{eq:MinkowskiMomenta}
+\end{equation}
+The lapse constraint is equivalently
+\begin{equation}
+P_\sigma+2\mpl^2k^2\Psi=0.
+\label{eq:MinkowskiCanonicalConstraint}
+\end{equation}
+Preservation of this constraint fixes $P_\Psi=0$; no oscillatory scalar frequency remains. Substitution into the canonical Hamiltonian leaves
+\begin{align}
+H_{k,\rm dec}^{(2)}
+&=\mpl^2\left(\frac{k^4}{A_k}-k^2\right)|\Psi|^2
+\nonumber\\
+&=\mpl^2
+\frac{(1-\alpha_{\rm M})k^2-\mu^2}
+{\alpha_{\rm M}k^2+\mu^2}\,k^2|\Psi|^2,
+\label{eq:MinkowskiHamiltonianDerivation}
+\end{align}
+which proves main manuscript, Eq.~(295). This agrees with the quadratic Hamiltonian of the neighboring relativistic khronon action \cite{BlanchetSkordis2024}. Setting $\alpha_{\rm M}=1$ proves main manuscript, Eq.~(296). The conclusion is deliberately limited to the second variation. The nonlinear $Y^{3/2}$ term is of higher perturbative order and cannot be used to change a quadratic coefficient, although it can alter global boundedness at finite amplitude.
+
+\subsection{Independent unitary-ADM Minkowski reduction}
+
+The same boundary can be derived directly from the unreduced ADM action, which is valid before division by $\mathcal W_s$. At $H=0$, $Q=1$, $a=1$, and $\cB_{,Q}(1)=0$, main manuscript, Eq.~(261) gives, for a real mode,
+\begin{equation}
+\frac{L_{k,\rm ADM}^{(2)}}{\mpl^2}
+=-3\dot\zeta_k^2-2k^2\dot\zeta_k\psi_k
++\frac12(\kappa_m+2\sigma_Jk^2)\alpha_k^2
++2k^2\alpha_k\zeta_k+k^2\zeta_k^2.
+\label{eq:MinkowskiADMDerivationL}
+\end{equation}
+Variation with respect to $\psi_k$ imposes $\dot\zeta_k=0$ for $k\ne0$. The lapse equation and its solution are
+\begin{equation}
+(\kappa_m+2\sigma_Jk^2)\alpha_k+2k^2\zeta_k=0,
+\qquad
+\alpha_k=-\frac{2k^2\zeta_k}{\kappa_m+2\sigma_Jk^2}.
+\label{eq:MinkowskiADMDerivationConstraint}
+\end{equation}
+After eliminating $\alpha_k$ and changing sign from the static reduced Lagrangian to the Hamiltonian,
+\begin{equation}
+H_{k,\rm ADM}^{(2)}
+=\mpl^2k^2
+\frac{2(1-\sigma_J)k^2-\kappa_m}
+{\kappa_m+2\sigma_Jk^2}|\zeta_k|^2.
+\label{eq:MinkowskiADMDerivationH}
+\end{equation}
+For $\sigma_J=1$ and $\mu^2=\kappa_m/2$ this is exactly equation~\eqref{eq:MinkowskiHamiltonianDerivation}, because $\zeta=-\Psi$ for the two metric conventions. This proves gauge agreement without assuming a nonsingular curvature-gauge solution for the shift.
+
+\subsection{Positive-charge DBI sector and order of limits}
+
+On an unbraided DBI component, the exact current is $\cK_{,Q}=C_Ta^{-3}$. Set
+\begin{equation}
+Z\equiv\frac{C_T}{\kappa_ma^3},
+\qquad
+R\equiv\sqrt{1+\lambda_DZ^2},
+\qquad
+\delta Q\equiv Q-1=\frac{Z}{R}.
+\label{eq:appendixDBIvariables}
+\end{equation}
+Direct differentiation of main manuscript, Eq.~(37) gives
+\begin{align}
+\cK_{,Q}
+&=\frac{\kappa_m\delta Q}{\sqrt{1-\lambda_D\delta Q^2}}
+=\kappa_mZ,
+\label{eq:appendixDBIKQ}\\
+\cK_{,QQ}
+&=\frac{\kappa_m}{(1-\lambda_D\delta Q^2)^{3/2}}
+=\kappa_mR^3.
+\label{eq:appendixDBIKQQ}
+\end{align}
+The source-free Friedmann equation then reads
+\begin{equation}
+3H^2
+=Q\cK_{,Q}-\cK
+=\kappa_m\left[Z+\frac{R-1}{\lambda_D}\right],
+\label{eq:appendixDBIFriedmann}
+\end{equation}
+and the acceleration equation gives
+\begin{equation}
+-2\dot H=Q\cK_{,Q}=Q\kappa_mZ.
+\label{eq:appendixDBIRaychaudhuri}
+\end{equation}
+For $C_T>0$ and finite $a$, all quantities on the right-hand sides of equations~\eqref{eq:appendixDBIKQ}--\eqref{eq:appendixDBIRaychaudhuri} are strictly positive. Substitution into the exact reduced action yields main manuscript, Eq.~(303)--main manuscript, Eq.~(305). This proves main manuscript, Proposition~XII.5 algebraically, with no numerical scan.
+
+To examine the boundary, expand
+\begin{equation}
+R=1+\frac12\lambda_DZ^2-\frac18\lambda_D^2Z^4+\cO(Z^6).
+\label{eq:appendixRseries}
+\end{equation}
+Equations~\eqref{eq:appendixDBIFriedmann}--\eqref{eq:appendixDBIRaychaudhuri} then give the asymptotic series in main manuscript, Eq.~(306)--main manuscript, Eq.~(309). In particular, $Q_s\propto Z^{-1}$ and $\mathcal W_s\propto Z^{1/2}$, so the curvature-gauge transformation becomes singular as the dynamically conserved charge density vanishes. The two operations
+\begin{equation}
+\lim_{Z\to0^+}\bigl(\text{reduce at }Z>0\bigr)
+\qquad\text{and}\qquad
+\bigl(\text{set }Z=0\text{ and then reduce}\bigr)
+\label{eq:noncommutinglimits}
+\end{equation}
+do not commute. This is the exact mathematical origin of the apparent conflict between the positive expanding branch and the negative strict-Minkowski Hessian.
+
+For a further independent check, use
+\begin{equation}
+4\pi G_*(\rho_T+p_T)=\frac12Q\cK_{,Q},
+\qquad
+c_{\rm ad}^2=\frac{\cK_{,Q}}{Q\cK_{,QQ}}.
+\label{eq:appendixGDMidentities}
+\end{equation}
+Then the published GDM form
+\begin{equation}
+c_s^2=c_{\rm ad}^2\left[
+1+\frac{c_{\rm ad}^2k^2}{4\pi G_*a^2(\rho_T+p_T)}
+\right]^{-1}
+\label{eq:appendixGDMform}
+\end{equation}
+reduces identically to main manuscript, Eq.~(282). Thus the positive-charge result agrees with the independent perturbative reduction of the unbraided khronon sector \cite{BlanchetSkordis2024}.
+
+\subsection{Matter-point braid no-go}
+
+Let $b_m=\cB_{,Q}(1)$ while preserving the constant exact Minkowski background. From main manuscript, Eq.~(258)--main manuscript, Eq.~(260),
+\begin{equation}
+\mathcal W_s=-b_m,
+\qquad
+\Xi_s=\kappa_m+\frac32b_m^2,
+\qquad
+\mathcal C_s=-\frac12b_m^2.
+\label{eq:appendixBraidNoGoCoefficients}
+\end{equation}
+If $b_m\ne0$, the reduced gradient coefficient is
+\begin{equation}
+F_s=\frac{4\mpl^2\mathcal C_s}{\mathcal W_s^2}=-2\mpl^2.
+\label{eq:appendixBraidNoGoFs}
+\end{equation}
+This is independent of the magnitude and sign of $b_m$. If $b_m=0$, the curvature reduction degenerates and the direct calculation reverts to main manuscript, Eq.~(296). Since $H=\dot Q=0$, neither $\cB_{,QQ}$ nor higher derivatives contribute to the quadratic invariants. This proves main manuscript, Proposition~XII.6.
+
+\subsection{Algebraic cross-checks}
+
+The following identities were checked independently by symbolic algebra:
+\begin{align}
+3+\frac{2(A_s+2\sigma_Jx)}{\mathcal W_s^2}
+&=\frac{2(Q^2\Xi_s+2\sigma_Jx)}{\mathcal W_s^2},
+\label{eq:symboliccheck1}\\
+H_d\mathcal W_{s,d}-\frac12\mathcal W_{s,d}^2
+&=\frac12Q_db_d(2H_d-Q_db_d),
+\label{eq:symboliccheck2}\\
+\cK_{{\rm DBI},QQ}
+&=\frac{\kappa_m}{[1-\lambda_D(Q-1)^2]^{3/2}},
+\qquad
+\frac{\cK_{{\rm DBI},Q}}{Q\cK_{{\rm DBI},QQ}}
+=\frac{(Q-1)[1-\lambda_D(Q-1)^2]}{Q},
+\label{eq:symboliccheck3}\\
+H_{k,\rm ADM}^{(2)}\big|_{\sigma_J=1,\,\kappa_m=2\mu^2}
+&=-\mpl^2\frac{\mu^2k^2}{k^2+\mu^2}|\zeta_k|^2,
+\label{eq:symboliccheck4}\\
+\lim_{Z\to0^+}\frac{ZQ_s(t,0)}{\mpl^2}
+&=3,
+\qquad
+\lim_{Z\to0^+}\frac{F_s}{\mpl^2}=3,
+\qquad
+\lim_{Z\to0^+}\frac{c_s^2(t,0)}{Z}=1,
+\label{eq:symboliccheck5}\\
+F_{s,m}\big|_{\cB_{,Q}(1)\ne0}
+&=-2\mpl^2.
+\label{eq:symboliccheck6}
+\end{align}
+The symbolic checks also verify the exact equality of equations~\eqref{eq:appendixGDMform} and~main manuscript, Eq.~(282). They supplement, but do not replace, the analytical derivations.
+
+
+\section{Exact checks for the completed local transition}
+\label{app:minkowskiRepairChecks}
+The completed unbraided quadratic action is main manuscript, Eq.~(324).
+Its auxiliary determinant, scalar coefficients, all seven positivity
+polynomial coefficients, switch derivative terms, ultraviolet limits,
+Ricci principal identity, and Kasner relations are independently checked
+by the embedded \texttt{scft\_rank1\_checks.py}. All arithmetic is exact.
+The test report verifies algebraic identities; it does not establish the
+nonlinear analytic hypotheses in main manuscript, result~XIV.4.
+The current general braided auxiliary formulas are additionally checked
+by \texttt{scft\_completion\_checks.py}. Old momentum-independent trace
+repair formulas are not formulas of main manuscript, Eq.~(59).
+
+
+\section{Matter reduction and homogeneous matching identities}
+\label{app:mattermix}
+\subsection{Fluid action and perturbation variables}
+
+For each visible species,
+\begin{equation}
+S_A=-\int\dd^4x\left[
+\sqrt{-g}\,\rho_A(n_A)+J_A^\mu\partial_\mu\ell_A
+\right],
+\qquad
+n_A=\sqrt{\frac{g_{\mu\nu}J_A^\mu J_A^\nu}{g}}.
+\label{eq:appmixSchutz}
+\end{equation}
+The current $J_A^\mu$ is a vector density and $\ell_A$ imposes particle-number conservation. Expanding to second order, eliminating the auxiliary current perturbation, and combining background-equation terms with the gravity--clock sector yields main manuscript, Eq.~(386).
+
+
+\subsection{Full auxiliary quadratic form}
+In the variables of main manuscript, Sec.~XV\,A, the auxiliary part of the
+action is the quadratic form in main manuscript, Eq.~(241), together with
+$\mathcal V\chi-\alpha\Delta_\rho-3\mathcal V\dot\zeta$.
+Its Hessian determinant is $-\mpl^4\mathcal D$. Completing its two-variable
+square gives the full reduced functional
+main manuscript, Eq.~(391). The coefficient of
+$\zeta\dot\zeta$ before integration by parts is $2\mpl^2B$.
+The accompanying exact checker verifies the gravity auxiliary
+elimination with the curvature term present. The displayed matter
+source terms follow by the same linear auxiliary inversion.
+
+\subsection{Rank-one inverse}
+For $x>0$ and $\mathscr P_{\rm full}\ne0$, the exact inverse is
+\begin{equation}
+\mathbf R_{\rm full}^{-1}
+=\frac1x\mathbf H^{-1}
++\frac{E}{\mpl^2\mathcal D}
+\frac{\boldsymbol1\boldsymbol1^T}{x\mathscr P_{\rm full}}.
+\label{eq:mixRinverse}
+\end{equation}
+The matrix determinant lemma gives main manuscript, Eq.~(393) for any number of
+species. Substitution into the velocity quadratic form gives
+main manuscript, Eq.~(394). This optional density-only elimination is
+not used to evolve the response across a zero of $\mathscr P_{\rm full}$;
+the canonical system contains no division by that quantity.
+
+\subsection{High-charge matching}
+
+At $Q_R=193/100$, the low/intermediate SCFT-A profile is exactly unbraided DBI. Because $V_K$ and all of its derivatives vanish at $Q_R$, the logarithmic slope main manuscript, Eq.~(407) matches $\varrho_{\rm DBI}$ to every order there. At $Q_E=199/100$, $1-V_K$ and all of its derivatives vanish, so $\varrho_{\rm A}$ matches the constant $\lambda_\infty$ to every order. Solving $\dd\JK/\dd Q=\varrho_{\rm A}\JK$ and then integrating $\cK_{,Q}=\JK$ proves that main manuscript, Eq.~(409) is $C^\infty$. Positivity follows directly from main manuscript, Eq.~(410).
+
+For $Q\ge Q_E$,
+\begin{equation}
+\frac{p_T}{\rho_T}
+=\frac{K_E+(F-F_E)/\lambda_\infty}
+{QF-K_E-(F-F_E)/\lambda_\infty}
+\longrightarrow\frac{1}{\lambda_\infty Q-1},
+\label{eq:appprimordialwtail}
+\end{equation}
+as $F=C_Ta^{-3}\to\infty$, confirming the cold asymptote independently of main manuscript, Eq.~(413).
+
+
+
+\section{Revised algebra and numerical reproducibility}
+\label{app:completedNumerics}\label{app:independentchecks}
+The revised benchmark is explicitly distinct from the earlier coefficient point. The exact choice $\delta=10^{-140}$ replaces the previously printed, uncertified approximation. Appendix~\ref{app:rationalCertificate} proves sufficient inequalities without searching for exact extrema. The exterior stiffness is $\kap/H_d^2=10^{30}$; the regulator is $\sigma=10^{-6}$.
+
+The file \texttt{exact\_algebra.py} independently varies the unreduced quadratic density, solves its lapse and shift constraints, differentiates the endpoint potential including momentum redshift, verifies the local-transition polynomial with both switch derivatives, proves the exact stationary scale comparison, and checks the newly derived ideal-fluid cubic density. All 16 implemented algebra and scale checks pass. The separate coefficient certificate passes 33 checks, including a rigorous range-integral enclosure for the tilted mean.
+
+\subsection{Recomputed responses and precision}
+Both broad backgrounds are recomputed on 601 logarithmic nodes with $10^{-15}\le a\le900$. The response calculation independently uses 4001 and 8001 background nodes on $1\le a\le10$. The current and Friedmann constraints are solved at each node. Because the revised stiffness is large, the code evaluates the flat-switch complement directly before multiplying by $\kap$. Subtracting a nearly unit switch from one would lose relevant terms. The declared action coefficients are never retuned between modes. The exact $\tau_6H_d^4=10^{-340}$ is stored with an extended exponent range. On the response band its contribution $3\tau_6p^4\le3\,10^{-328}$ is below binary64 update resolution. The continuum high-momentum claims are symbolic and do not rely on resolving that contribution in this scan.
+
+For each channel $X$ on a common grid define
+\begin{equation}
+ \mathcal E_{\rm ch}=\max_X\frac{\max_i|X_{\rm fine}(N_i)-X_{\rm coarse}(N_i)|}
+ {\max\{1,\max_i|X_{\rm fine}(N_i)|\}}.
+ \label{eq:independentConvergence}
+\end{equation}
+The eight evolved variables, lapse, two metric potentials and three Newtonian density contrasts enter the refinement check. The response maximum uses only the six channels declared in the main text. Results are numerical approximations:
+\begin{center}\small
+\begin{tabular}{p{0.63\linewidth}r}
+\toprule Diagnostic & Computed value \\
+\midrule
+Largest sampled unit response & $1.0011357323900973$ \\
+Largest channel-scaled refinement discrepancy & $1.6975908959798724\times10^{-11}$ \\
+Largest fine-grid background residual & $5.028079805054185\times10^{-13}$ \\
+Largest absolute slip-identity residual & $7.860465750519907\times10^{-19}$ \\
+Smallest sampled canonical denominator & $1.792669897832447$ \\
+DOP853--RK45 difference at $k/H_d=0.03$ & $1.5400678779128874\times10^{-12}$ \\
+DOP853--RK45 difference at $k/H_d=10.0$ & $2.3641462051915418\times10^{-14}$ \\
+DOP853--RK45 difference at $k/H_d=1000.0$ & $2.560196178444286\times10^{-13}$ \\
+\bottomrule\end{tabular}\end{center}
+The integration tolerances and sample grids are specified in the main text and script. These are numerical convergence and constraint diagnostics, not interval-certified continuum extrema or a proof covering every initial state. The decreasing endpoint energy is established independently by the analytic theorem.
+
+\subsection{Data products}
+The archive supplies all 42 responses in NPZ form, their summary CSV, six representative time series, both broad homogeneous backgrounds, the fine loaded background, a high-precision endpoint spectrum, and a contracting-branch table with exact rational clock inputs. JSON reports distinguish symbolic proofs, interval certificates and numerical approximations. The TeX figures contain the regenerated coordinates and require no separate image assets. The README gives rerun commands and the exact coefficient point.
+
+\section{A certificate with explicit rational action coefficients}
+\label{app:rationalCertificate}
+The revised action uses
+\begin{equation}
+ \kap/H_d^2=10^{30},\qquad \delta=10^{-140},\qquad
+ \sigma=10^{-6},\qquad s_{\rm N}=10,\qquad a_0/H_d=1.
+\end{equation}
+These are exact choices. The former numerical extremum is neither
+reused nor claimed to have been certified. Instead we prove sufficient
+uniform bounds for a new member of the same functional family. The large
+hierarchy and small coupling are chosen to prove existence, not naturalness.
+
+\subsection{Moment normalization}
+Write $z=(Q-Q_a)/L$, $\phi_\theta=\exp[-1/z-1/(1-z)+\theta z]$.
+The rational endpoint bounds in the main text imply
+\begin{equation}
+ \frac25<\frac{\bar Q-Q_a}{L}<\frac12.
+\end{equation}
+The tilted mean at $\theta=0$ is exactly $1/2$ by reflection. At
+$\theta=-16$, outward-rounded range integration proves
+\begin{equation}
+ \frac14<\frac{\int_0^1z\phi_{-16}(z)\,\dd z}
+                   {\int_0^1\phi_{-16}(z)\,\dd z}<\frac3{10}.
+ \label{eq:certMean}
+\end{equation}
+The supplied certificate uses 4096 equal rational boxes and Arb at
+160-bit precision. On interior boxes it evaluates the entire integrand
+range, then multiplies by the exact box width; it is not a quadrature
+estimate based on point samples. At the two endpoint boxes, positivity
+and monotonic bounds give the range from zero to the finite upper
+endpoint bound. Interval sums enclose both integrals. The JSON file
+records the resulting balls and strict comparisons. Monotonicity of the
+tilted mean therefore proves $-16<\theta<0$.
+
+Since $F_0>1/100-2\epsilon>L$ and $\phi_\theta\le1$, $c>1$.
+On $1/4\le z\le3/4$, $\phi_\theta>e^{-18}>3^{-18}$, so
+\begin{equation}
+ 1<c<\frac{2\,3^{18}}{99L}<10^9.
+ \label{eq:certNormalization}
+\end{equation}
+
+\subsection{An analytic inner interval}
+Choose $n_0=16$ and $Q_0=Q_a+L/16$, without searching for a smallest
+integer. On $0<z\le1/16$ the ramp is absent and
+\begin{equation}
+ R(z)=(\log\phi_\theta)'=z^{-2}-(1-z)^{-2}+\theta,
+ \quad R\ge\tfrac9{10}z^{-2},\quad
+ -R'\le\tfrac{201}{100}z^{-3},\quad -R'/R^2\le\tfrac52z\le\tfrac5{32}.
+\end{equation}
+For $I(z)=\int_0^z\phi_\theta(v)\,\dd v$,
+$(\phi_\theta/R)'=\phi_\theta(1-R'/R^2)$ gives
+$I R/\phi_\theta\ge32/37$. Consequently
+\begin{equation}
+ a_m=6F/(Qg)+3(F/g)(g'/g)\ge96/37
+ >1+1515/1001\ge q+1.
+\end{equation}
+Here primes on $g$ denote $Q$ derivatives. The extra positive first term
+has not been needed. Also $h\ge Q_aF/3$ and
+$F/g\ge L/[(37/32)R]$. The bounds
+$Rg\le10^9z^{-2}e^{-1/z}\le10^9/256$ and
+$R\sqrt g\le10^5z^{-2}e^{-1/(2z)}\le10^5$ imply
+\begin{equation}
+ d_0\ge10^{-12},\qquad d_1\ge10^{-12}.
+\end{equation}
+These loose bounds apply on the entire open inner interval, including
+the limiting endpoint; no smallest sampled value is used.
+
+\subsection{Uniform compact-interval bounds}
+On $[1/32,1/16]$, $\phi_\theta>e^{-35}>3^{-35}$. Hence
+\begin{equation}
+ h_*\ge\frac{Q_aL}{96\,3^{35}}>10^{-22},\qquad
+ h<1/250,\qquad m<2\,10^9.
+\end{equation}
+We next bound a possible rapidly varying ramp. On
+$Q_0\le Q\le Q_b-\epsilon/2$, the bump logarithmic derivative in
+$Q$ has absolute value below $4\,10^{10}$. For
+$w=(Q-Q_b+\epsilon)/\epsilon\in[1/20000,1/2]$, the ramp logarithmic
+derivative is below $5\,10^{14}$. A positive sum has logarithmic
+derivative equal to a weighted mean of those of its summands.
+For $0<w<1/20000$, the bump is greater than $e^{-9020}$, whereas
+\begin{equation}
+ |g_R'|\le3\,10^6(r^2+4)e^{2-r},\qquad r=1/w\ge20000.
+\end{equation}
+The decreasing right-hand side divided by $e^{-9020}$ is less than one;
+the certificate verifies the stronger rational inequality using
+$e>2$. On the remaining interval $w\ge1/2$, $g\ge1/2$ and
+$|g'|<3\,10^{12}$. These three cases prove, everywhere on
+$[Q_0,Q_b]$,
+\begin{equation}
+ |g'/g|<10^{15},\qquad |m_N|<10^{14}.
+\end{equation}
+On $Q_1\le Q\le Q_2$, $\phi_\theta>e^{-16}>3^{-16}$ and
+$F<1/99$, giving $R_*<10^{10}$. Substituting the preceding rational
+bounds into the definitions of the main text gives
+\begin{equation}
+ A_1<10^{20},\qquad E_2<10^{20},\qquad E_3<10^{14}.
+ \label{eq:certCompact}
+\end{equation}
+For $c_*=2h_*^2$ and $d_*=h_*$, these estimates imply
+\begin{equation}
+ 2\delta\le\min\left\{1,d_0,d_1,\frac{h_*}{2A_1},
+ \sqrt{\frac{27c_*^2d_*}{32E_2^3}},\frac{27c_*d_*^2}{32E_3^3}\right\}
+ \quad\text{at }\delta=10^{-140}.
+\end{equation}
+Every comparison is checked as an exact rational inequality. The
+all-momentum proof in the main text therefore applies without an
+uncertified extremum evaluation. The proof is independent of $\kap$,
+because it uses dimensionless local variables.
+
+\subsection{An explicit acceleration-tip regulator}
+For $s_{\rm N}>1$, $0<\sigma\le1/4$ and $Y\le4\sigma^2$, the seed
+obeys $0\le\mu(\sqrt Y)\le3\sigma$, while
+$0\le\widehat\mu_\sigma\le5\sigma$ and
+$|\widehat\mu_\sigma'|\le9/\sigma$. Also
+\begin{equation}
+ \int_0^1b(z)\,\dd z>\tfrac12\,3^{-6},\qquad
+ |A_\sigma|\le10\,3^6\sigma,\qquad
+ |b+2zb'|<5.
+\end{equation}
+It follows that both $|\mu_\sigma|$ and
+$|\mu_\sigma+2Y\mu_\sigma'|$ are below $40000\sigma$ throughout
+the modified tip. At $\sigma=10^{-6}$ the two lapse-Hessian eigenvalues
+there exceed $1-40000\sigma=24/25$. Outside the tip the seed is
+recovered exactly. Since $0<g_{\rm N}<1/2$,
+\begin{equation}
+ \mathsf G_\sigma\ge g_{\rm N}h^{-1}>0
+ \label{eq:explicitTipMargin}
+\end{equation}
+globally in acceleration. The regulator is fixed by a rational number,
+and no numerical minimization over acceleration enters this statement.
+
+
+\section{Nonlinear Cauchy theorem and reproducibility audit}
+\label{app:nonlinearAudit}
+
+This appendix records the mathematical status of the nonlinear result now integrated into the main manuscript.  It is a proof ledger and consistency audit, not a second independent theorem.  The authoritative statement is the full nonlinear local Hadamard theorem in main manuscript, Sec.~XIV~C.  The result concerns the exact completed vacuum gravity--clock action, including the nonlinear acceleration function, the elliptic trace operator, the curvature--lapse coupling, the intrinsic-curvature square, the sixth-order Ricci-gradient term, the braid, and the smooth clock-norm coefficient profiles.  No two-derivative truncation is substituted into the nonlinear proof.
+
+\subsection{Strongly regular phase-space domain}
+Let $\Sigma=\mathbb T^3$ and let $\widehat h$ be a smooth flat reference metric.  Put $\Lambda=(1-\Delta_{\widehat h})^{1/2}$ and, for integer $s\ge18$, use the reduced Sobolev scale
+\begin{equation}
+ \|(k,\varpi)\|_{\mathbb X^s}^2
+ =\|k\|_{H^{s+3}}^2+\|\varpi\|_{H^s}^2.
+ \label{eq:compXs}
+\end{equation}
+The threshold $s\ge18$ is a conservative sufficient regularity requirement, not an optimality claim.  A datum $(h_0,\pi_0,N_0,K_0)$ lies in the strongly regular domain when all of the following hold simultaneously:
+\begin{enumerate}[label=(R\arabic*)]
+\item the exact trace relation, lapse constraint, and momentum constraint hold; $h_0$ is positive, $N_0>0$, and the range of $Q_0=N_0^{-1}$ remains inside one smooth coefficient chart;
+\item the trace Legendre operator $\AN$ is uniformly positive and the full negative lapse Hessian is coercive on the entire $H^1(\Sigma)$ lapse space, including the constant mode;
+\item the lapse-gradient principal coefficient obeys $\mathsf G_{\rm full}^{ij}\xi_i\xi_j/|\xi|_h^2\ge g_0>0$ for every nonzero covector, while $\tau_6\ge\tau_0>0$ and $\ell\ge\ell_0>0$;
+\item the spatial-harmonic Faddeev--Popov operator is invertible on mean-zero vector fields, with residual constant translations fixed by a base-point convention.
+\end{enumerate}
+These are open conditions in a sufficiently small $\mathbb X^s$ neighborhood.  In particular, the theorem is not inferred from positivity of a homogeneous Fourier symbol alone.
+
+\subsection{The local Hadamard theorem}
+The integrated manuscript proves the following result.
+\begin{theorem}[Vacuum local Hadamard theorem: companion statement]
+\label{thm:compHadamard}
+Let $s\ge18$ and let $(h_0,\pi_0,N_0,K_0)$ be strongly regular vacuum data on $\mathbb T^3$, with the momentum constraint imposed and the spatial-harmonic representative fixed.  There exist $T_*>0$ and a neighborhood $\mathcal O$ of the reduced datum in $\mathbb X^s$ such that every compatible datum in $\mathcal O$ determines a unique SCFT-A development, modulo the fixed translations, satisfying
+\begin{align}
+ h&\in C([-T_*,T_*];H^{s+3})\cap C^1([-T_*,T_*];H^s),\nonumber\\
+ \pi&\in C([-T_*,T_*];H^s)\cap C^1([-T_*,T_*];H^{s-3}),\label{eq:compRegularity}\\
+ N,K,\beta&\in C([-T_*,T_*];H^{s+1}),\qquad
+ \partial_tN,\partial_tK\in C([-T_*,T_*];H^{s-2}).\nonumber
+\end{align}
+The solution map is continuous in $\mathbb X^s$, higher Sobolev regularity persists on the same interval, and the lapse, local lapse, momentum, spatial-harmonic, and covariant clock constraints propagate.  Continuation holds while the $\mathbb X^s$ norm remains finite and all four strong-regularity margins remain strictly positive.
+\end{theorem}
+The result is local in time.  It is not a global existence or nonlinear stability theorem, and it is not a nonlinear initial-boundary-value theorem.
+
+\subsection{Tame auxiliary reconstruction and reduced Hamiltonian}
+Write $\varphi=\log(N/N_0)$ and collect the trace relation and local lapse constraint into the map
+\begin{equation}
+ \mathcal F(h,\pi,K,\varphi)=
+ \left(\AN K+P-\frac32\cB_{\rm A},\,
+       \frac{\cC_N}{\mpl^2\sqrt h}\right).
+ \label{eq:compFmap}
+\end{equation}
+For $r\ge3$ the exact derivative count is
+\begin{equation}
+ H^{r+4}\times H^r\times H^{r+2}\times H^{r+2}
+ \longrightarrow H^r\times H^r.
+ \label{eq:compFspaces}
+\end{equation}
+The derivative in $K$ is the positive second-order operator $\AN$.  After eliminating that block, the relative-lapse Schur complement is precisely the coercive negative lapse Hessian.  The Banach implicit-function theorem therefore gives a unique local auxiliary graph $(K,N)=\mathcal G(h,\pi)$, including the homogeneous lapse mode, with tame elliptic estimates.  The two-derivative offset between $h$ and $N$ is essential and is retained in \cref{eq:compRegularity}.
+
+The spatial-harmonic condition is the local Ebin slice near the fixed reference metric \cite{Ebin,AnderssonMoncrief}.  On the zero momentum level, cotangent reduction leaves the canonical symplectic matrix on the harmonic slice \cite{MarsdenWeinstein}.  The lapse second-class pair does not modify brackets between functionals of $(h,\pi)$, so stationary substitution gives the exact reduced system
+\begin{equation}
+ H_{\rm red}(h,\pi)=\widetilde H_C\bigl(h,\pi,K(h,\pi),N(h,\pi)\bigr),
+ \qquad
+ \partial_tU=\mathbb J\nabla H_{\rm red}(U),\quad U=(h,\pi).
+ \label{eq:compReducedFlow}
+\end{equation}
+
+\subsection{Sixth-order principal coercivity}
+Let $L(U)=D^2H_{\rm red}(U)=L(U)^*$.  The reduced Hessian has Douglis--Nirenberg block orders
+\begin{equation}
+ \operatorname{ord}L_{hh}=6,\qquad
+ \operatorname{ord}L_{h\pi},\operatorname{ord}L_{\pi h}\le2,\qquad
+ \operatorname{ord}L_{\pi\pi}=0.
+ \label{eq:compOrders}
+\end{equation}
+For a frozen nonzero covector $\xi$, imposing the principal harmonic and momentum tangencies yields the leading constrained quadratic form
+\begin{equation}
+ \mathcal E_{\rm pr}=
+ 4N\left(|\varpi|^2-\frac{(\operatorname{tr}_h\varpi)^2}{3}\right)
+ +\frac{N\tau_6}{4}|\xi|_h^6|k|^2
+ +\frac{N\ell^2}{8g_\xi}|\xi|_h^2|r_\xi(k)|^2.
+ \label{eq:compPrincipalEnergy}
+\end{equation}
+The lapse Schur term is nonnegative.  Since $(\operatorname{tr}\varpi)^2\le2|\varpi|^2$,
+\begin{equation}
+ \mathcal E_{\rm pr}\ge
+ \frac{4N}{3}|\varpi|^2+\frac{N\tau_6}{4}|\xi|_h^6|k|^2.
+ \label{eq:compPrincipalCoercivity}
+\end{equation}
+The three physical leading-frequency squares are
+\begin{equation}
+ N^2\tau_6,\qquad N^2\tau_6,\qquad
+ N^2\left(\tau_6+\frac{\ell^2}{3g_\xi}\right),
+ \label{eq:compLeadingFreq}
+\end{equation}
+corresponding to two tensor directions and one scalar direction.  On a bounded strongly regular set they are real, nonzero, and uniform.
+
+\subsection{Exact loss-free energy and continuous dependence}
+The central analytic step is not a principal-symbol estimate by itself.  Define
+\begin{equation}
+ R=\begin{pmatrix}\Lambda^3&0\\0&I\end{pmatrix},\qquad
+ A=R\mathbb JLR^{-1},\qquad
+ S=R^{-*}LR^{-1}.
+ \label{eq:compAS}
+\end{equation}
+Self-adjointness of $L$ and skew-adjointness of $\mathbb J$ give the exact full-operator cancellation
+\begin{equation}
+ SA+A^*S=0.
+ \label{eq:compExactSymm}
+\end{equation}
+A finite-rank smoothing correction $F=f(S)$ lifts the finitely many possible low spectral directions, producing $\widetilde S=S+F\ge c_0I$.  With $Z=\widetilde S^{1/2}R\delta U$, the variational generator is a skew-adjoint elliptic operator $\mathscr K\in\Psi^3$ plus order-zero terms.  Set
+\begin{equation}
+ \mathsf P=I+\mathscr K^*\mathscr K=I-\mathscr K^2\in\Psi^6.
+ \label{eq:compP}
+\end{equation}
+Because $\mathsf P$ is a polynomial in $\mathscr K$, one has the exact commutation relation
+\begin{equation}
+ [\mathsf P^{r/6},\mathscr K]=0,
+ \label{eq:compCommute}
+\end{equation}
+while parameter-dependent complex-power and symbol calculus control the remaining order-zero conjugations \cite{Seeley,Taylor}.  The resulting loss-free energy is
+\begin{equation}
+ E_r[U;\delta U]=
+ \|\mathsf P(U)^{r/6}\widetilde S(U)^{1/2}R\delta U\|_{L^2}^2,
+ \label{eq:compEnergy}
+\end{equation}
+with the uniform equivalence and forced estimate
+\begin{align}
+ c_R\|\delta U\|_{\mathbb X^r}^2&\le E_r\le
+ C_R\|\delta U\|_{\mathbb X^r}^2,\nonumber\\
+ \frac{\dd E_r}{\dd t}&\le
+ C_R(1+\|U\|_{\mathbb X^s})E_r+C_R\|f\|_{\mathbb X^r}^2.
+ \label{eq:compLossFree}
+\end{align}
+No norm above $\mathbb X^r$ appears.  Applying the same construction to the averaged Hessian between two solutions gives
+\begin{equation}
+ \|U_1(t)-U_2(t)\|_{\mathbb X^{s-1}}
+ \le C_Re^{C_R|t|}\|U_1(0)-U_2(0)\|_{\mathbb X^{s-1}}.
+ \label{eq:compDifference}
+\end{equation}
+Friedrichs regularization supplies smooth finite-dimensional approximate flows.  The cutoff-independent top-order estimate gives a common lifespan, \cref{eq:compDifference} makes the approximants Cauchy one derivative below the top norm, and the standard Bona--Smith smoothing argument upgrades this to top-norm continuous dependence \cite{BonaSmith,IfrimTataru}.  Reapplication of the local theorem yields the stated continuation criterion.  For a separately specified minimally coupled matter model satisfying the required symmetrizable-hyperbolic and constraint hypotheses, the same scheme extends by a direct-sum energy and standard quasilinear iteration \cite{Kato}; this is a theorem schema, not an unconditional statement about the unspecified $S_{\rm vis}$.
+
+\subsection{Constraint propagation and a nonempty nonlinear domain}
+Let $\Delta_N=\delta\cC_N/\delta N|_{h,\pi}$.  The lapse velocity is fixed by
+\begin{equation}
+ \dot N=\Lie_\beta N-\Delta_N^{-1}\{\cC_N,H_C\}_{h,\pi}.
+ \label{eq:compLapseVelocity}
+\end{equation}
+Spatial covariance then makes the lapse and momentum constraint evolution homogeneous in the constraints; $\dot p_N=-\cC_N$.  Strong regularity supplies the bounded full-space inverse of $\Delta_N$, including constants.  Diffeomorphism invariance and the timelike clock gradient then imply propagation of the covariant clock equation from the reconstructed metric equations.
+
+The theorem's domain is explicitly nonempty.  On a flat torus take an unbraided rolling point $Q_*\in(Q_a,Q_L)$ with $U''(Q_*)>0$ and
+\begin{equation}
+ N_*=Q_*^{-1},\qquad
+ H_*^2=\frac{Q_*U'(Q_*)-U(Q_*)}{3}>0,\qquad
+ \pi_*^{ij}=-\mpl^2\sqrt{h_*}\,H_*h_*^{ij}.
+ \label{eq:compRolling}
+\end{equation}
+At the representative exact point $Q_*=101/100$,
+\begin{align}
+ N_*&=\frac{100}{101},&
+ \nu_*H_d^2&=\frac{1}{2\,10^{170}},&
+ \ell_*H_d^2&=\frac{1}{2\,10^{30}},&
+ \tau_6H_d^4&=10^{-340},\nonumber\\
+ \frac{U_*''}{H_d^2}&=\frac{10^{36}}{9999\sqrt{9999}},&
+ \frac{m_*^2}{H_d^2}&=
+ \frac{1020100\,10^{30}}{9999\sqrt{9999}}>0.
+ \label{eq:compRollingPoint}
+\end{align}
+No positive floor is rounded to zero.  A transverse-traceless momentum perturbation proportional to $\epsilon\cos(x^1/L)$ produces a unique nearby lapse with
+\begin{equation}
+ \varphi_\epsilon=\epsilon^2\left[
+ \frac{2}{m_*^2}+\frac{2}{m_*^2+8/L^2}\cos(2x^1/L)\right]
+ +O(\epsilon^4),
+ \label{eq:compTTresponse}
+\end{equation}
+so its mean response is $2\epsilon^2/m_*^2+O(\epsilon^4)>0$ for sufficiently small nonzero $\epsilon$.  This explicitly shows that nonzero spatial modes source the homogeneous lapse mode rather than allowing it to be discarded.
+
+\subsection{Proof boundary and reproducibility status}
+The nonlinear theorem is analytic.  It does not rely on the 42-mode response scan, floating-point extrema, or numerical time integration.  The numerical values in Appendix M remain the reproducibility certificate for the revised background and finite-wavelength response: the largest sampled unit response is $1.0011357323900973$, the largest channel-scaled refinement discrepancy is $1.6975908959798724\times10^{-11}$, and the largest fine-grid background residual is $5.028079805054185\times10^{-13}$.  Exact coefficient claims continue to use rational identities, symbolic algebra, and interval enclosures rather than decimal output.
+
+The boundary of the theorem is equally important.  It proves local vacuum Cauchy evolution on a compact manifold without boundary.  It does not prove global nonlinear stability, a nonlinear bounded-domain initial-boundary-value problem, a uniform theorem as $\tau_6\downarrow0$, an unconditional result for an unspecified visible-matter functional, a complete strong-coupling domain, radiative protection, or nonlinear sourced matching between the stationary galactic and cosmological clock sectors.  Those statements remain outside the established result.
+
+\begin{thebibliography}{99}
+
+\bibitem{Riess1998}
+A. G. Riess \textit{et al.}, Observational evidence from supernovae for an accelerating universe and a cosmological constant, Astron. J. \textbf{116}, 1009--1038 (1998). \url{https://doi.org/10.1086/300499}
+
+\bibitem{Perlmutter1999}
+S. Perlmutter \textit{et al.}, Measurements of $\Omega$ and $\Lambda$ from 42 high-redshift supernovae, Astrophys. J. \textbf{517}, 565--586 (1999). \url{https://doi.org/10.1086/307221}
+
+\bibitem{Planck2020}
+N. Aghanim \textit{et al.} (Planck Collaboration), Planck 2018 results. VI. Cosmological parameters, Astron. Astrophys. \textbf{641}, A6 (2020). \url{https://doi.org/10.1051/0004-6361/201833910}
+
+\bibitem{Weinberg1989}
+S. Weinberg, The cosmological constant problem, Rev. Mod. Phys. \textbf{61}, 1--23 (1989). \url{https://doi.org/10.1103/RevModPhys.61.1}
+
+\bibitem{Clifton2012}
+T. Clifton, P. G. Ferreira, A. Padilla, and C. Skordis, Modified gravity and cosmology, Phys. Rep. \textbf{513}, 1--189 (2012). \url{https://doi.org/10.1016/j.physrep.2012.01.001}
+
+\bibitem{Deffayet2010}
+C. Deffayet, O. Pujol\`as, I. Sawicki, and A. Vikman, Imperfect dark energy from kinetic gravity braiding, J. Cosmol. Astropart. Phys. \textbf{10}, 026 (2010). \url{https://doi.org/10.1088/1475-7516/2010/10/026}
+
+\bibitem{Kobayashi2011}
+T. Kobayashi, M. Yamaguchi, and J. Yokoyama, Generalized G-inflation: Inflation with the most general second-order field equations, Prog. Theor. Phys. \textbf{126}, 511--529 (2011). \url{https://doi.org/10.1143/PTP.126.511}
+
+\bibitem{BlanchetSkordis2024}
+L. Blanchet and C. Skordis, Relativistic khronon theory in agreement with modified Newtonian dynamics and large-scale cosmology, J. Cosmol. Astropart. Phys. \textbf{11}, 040 (2024). \url{https://doi.org/10.1088/1475-7516/2024/11/040}
+
+\bibitem{BlanchetSkordis2025}
+L. Blanchet and C. Skordis, Khronon-tensor theory reproducing MOND and the cosmological model, arXiv:2507.00912 [gr-qc] (2025). \url{https://arxiv.org/abs/2507.00912}
+
+\bibitem{Bekenstein2004}
+J. D. Bekenstein, Relativistic gravitation theory for the modified Newtonian dynamics paradigm, Phys. Rev. D \textbf{70}, 083509 (2004); Erratum Phys. Rev. D \textbf{71}, 069901 (2005). \url{https://doi.org/10.1103/PhysRevD.70.083509}
+
+\bibitem{SkordisZlosnik2021}
+C. Skordis and T. Z\l{}o\'snik, New relativistic theory for modified Newtonian dynamics, Phys. Rev. Lett. \textbf{127}, 161302 (2021). \url{https://doi.org/10.1103/PhysRevLett.127.161302}
+
+\bibitem{ChamseddineMukhanov2013}
+A. H. Chamseddine and V. Mukhanov, Mimetic dark matter, J. High Energy Phys. \textbf{11}, 135 (2013). \url{https://doi.org/10.1007/JHEP11(2013)135}
+
+\bibitem{MirzagholiVikman2015}
+L. Mirzagholi and A. Vikman, Imperfect dark matter, J. Cosmol. Astropart. Phys. \textbf{06}, 028 (2015). \url{https://doi.org/10.1088/1475-7516/2015/06/028}
+
+\bibitem{Wiltshire2007}
+D. L. Wiltshire, Cosmic clocks, cosmic variance and cosmic averages, New J. Phys. \textbf{9}, 377 (2007). \url{https://doi.org/10.1088/1367-2630/9/10/377}
+
+\bibitem{Wiltshire2009}
+D. L. Wiltshire, Average observational quantities in the timescape cosmology, Phys. Rev. D \textbf{80}, 123512 (2009). \url{https://doi.org/10.1103/PhysRevD.80.123512}
+
+\bibitem{Einstein1920Aether}
+A. Einstein, \emph{\"Ather und Relativit\"atstheorie} (Julius Springer, Berlin, 1920); English translation, Ether and the Theory of Relativity, in \emph{The Collected Papers of Albert Einstein}, Vol. 7 (Princeton University Press, 2002).
+
+\bibitem{BellorinRestuccia2011}
+J. Bellor\'in and A. Restuccia, Consistency of the Hamiltonian formulation of the lowest-order effective action of the complete Ho\v{r}ava theory, Phys. Rev. D \textbf{84}, 104037 (2011). \url{https://doi.org/10.1103/PhysRevD.84.104037}
+
+\bibitem{Gao2014}
+X. Gao, Hamiltonian analysis of spatially covariant gravity, Phys. Rev. D \textbf{90}, 104033 (2014). \url{https://doi.org/10.1103/PhysRevD.90.104033}
+
+\bibitem{Scherrer2004}
+R. J. Scherrer, Purely kinetic $k$ essence as unified dark matter, Phys. Rev. Lett. \textbf{93}, 011301 (2004). \url{https://doi.org/10.1103/PhysRevLett.93.011301}
+
+\bibitem{Milgrom1983}
+M. Milgrom, A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis, Astrophys. J. \textbf{270}, 365--370 (1983). \url{https://doi.org/10.1086/161130}
+
+\bibitem{BekensteinMilgrom1984}
+J. Bekenstein and M. Milgrom, Does the missing mass problem signal the breakdown of Newtonian gravity?, Astrophys. J. \textbf{286}, 7--14 (1984). \url{https://doi.org/10.1086/162570}
+
+\bibitem{LIGOFermi2017}
+B. P. Abbott \textit{et al.}, Gravitational waves and gamma-rays from a binary neutron star merger: GW170817 and GRB~170817A, Astrophys. J. Lett. \textbf{848}, L13 (2017). \url{https://doi.org/10.3847/2041-8213/aa920c}
+
+\bibitem{Baker2017}
+T. Baker, E. Bellini, P. G. Ferreira, M. Lagos, J. Noller, and I. Sawicki, Strong constraints on cosmological gravity from GW170817 and GRB~170817A, Phys. Rev. Lett. \textbf{119}, 251301 (2017). \url{https://doi.org/10.1103/PhysRevLett.119.251301}
+
+\bibitem{Creminelli2017}
+P. Creminelli and F. Vernizzi, Dark energy after GW170817 and GRB~170817A, Phys. Rev. Lett. \textbf{119}, 251302 (2017). \url{https://doi.org/10.1103/PhysRevLett.119.251302}
+
+\bibitem{Ezquiaga2017}
+J. M. Ezquiaga and M. Zumalac\'arregui, Dark energy after GW170817: Dead ends and the road ahead, Phys. Rev. Lett. \textbf{119}, 251304 (2017). \url{https://doi.org/10.1103/PhysRevLett.119.251304}
+
+\bibitem{Tsujikawa2015}
+S. Tsujikawa, The effective field theory of inflation/dark energy and the Horndeski theory, Lect. Notes Phys. \textbf{892}, 97--136 (2015). \url{https://doi.org/10.1007/978-3-319-10070-8_4}
+
+\bibitem{SchutzSorkin1977}
+B. F. Schutz and R. Sorkin, Variational aspects of relativistic field theories, with application to perfect fluids, Ann. Phys. (N.Y.) \textbf{107}, 1--43 (1977). \url{https://doi.org/10.1016/0003-4916(77)90200-7}
+
+\bibitem{Brown1993}
+J. D. Brown, Action functionals for relativistic perfect fluids, Class. Quantum Grav. \textbf{10}, 1579--1606 (1993). \url{https://doi.org/10.1088/0264-9381/10/8/017}
+
+\bibitem{KaseTsujikawa2020}
+R. Kase and S. Tsujikawa, Scalar-field dark energy nonminimally and kinetically coupled to dark matter, Phys. Rev. D \textbf{101}, 063511 (2020). \url{https://doi.org/10.1103/PhysRevD.101.063511}
+
+\bibitem{Cheung2008}
+C. Cheung, P. Creminelli, A. L. Fitzpatrick, J. Kaplan, and L. Senatore,
+The effective field theory of inflation, J. High Energy Phys. \textbf{03}, 014 (2008).
+\url{https://doi.org/10.1088/1126-6708/2008/03/014}
+
+\bibitem{BlasPujolasSibiryakov2011}
+D. Blas, O. Pujol\`as, and S. Sibiryakov,
+Models of non-relativistic quantum gravity: The good, the bad and the healthy,
+J. High Energy Phys. \textbf{04}, 018 (2011).
+\url{https://doi.org/10.1007/JHEP04(2011)018}
+
+\bibitem{Flanagan2023}
+E. E. Flanagan, Khronometric theories of modified Newtonian dynamics, Astrophys. J. \textbf{958}, 107 (2023). \url{https://doi.org/10.3847/1538-4357/acf6cb}
+
+\bibitem{JacobsonMattingly2001}
+T. Jacobson and D. Mattingly, Gravity with a dynamical preferred frame, Phys. Rev. D \textbf{64}, 024028 (2001). \url{https://doi.org/10.1103/PhysRevD.64.024028}
+
+\bibitem{Jacobson2008}
+T. Jacobson, Einstein-aether gravity: A status report, PoS QG-PH, 020 (2007). \url{https://doi.org/10.22323/1.043.0020}
+
+\bibitem{Horava2009}
+P. Ho\v{r}ava, Quantum gravity at a Lifshitz point, Phys. Rev. D \textbf{79}, 084008 (2009). \url{https://doi.org/10.1103/PhysRevD.79.084008}
+
+\bibitem{Blas2010}
+D. Blas, O. Pujol\`as, and S. Sibiryakov, Consistent extension of Ho\v{r}ava gravity, Phys. Rev. Lett. \textbf{104}, 181302 (2010). \url{https://doi.org/10.1103/PhysRevLett.104.181302}
+
+\bibitem{MagainHauret2015}
+P. Magain and C. Hauret, On the nature of cosmological time, arXiv:1505.02052 [astro-ph.CO] (2015). \url{https://arxiv.org/abs/1505.02052}
+
+\bibitem{MagainHauret2016}
+P. Magain and C. Hauret, Variable time flow as an alternative to dark energy, arXiv:1606.06169 [astro-ph.CO] (2016). \url{https://arxiv.org/abs/1606.06169}
+
+\bibitem{Colombo}
+M. Colombo, A. E. G\"umr\"uk\c c\"uo\u glu, and T. P. Sotiriou,
+Ho\v rava gravity with mixed derivative terms,
+Phys. Rev. D \textbf{91}, 044021 (2015).
+\url{https://arxiv.org/abs/1410.6360}.
+
+\bibitem{Coates}
+A. Coates, M. Colombo, A. E. G\"umr\"uk\c c\"uo\u glu, and T. P. Sotiriou,
+The uninvited guest in mixed derivative Ho\v rava gravity (2016).
+\url{https://arxiv.org/pdf/1604.04215}.
+
+\bibitem{Donnelly}
+W. Donnelly and T. Jacobson,
+Hamiltonian structure of Ho\v rava gravity,
+Phys. Rev. D \textbf{84}, 104019 (2011).
+\url{https://arxiv.org/abs/1106.2131}.
+
+\bibitem{AnderssonMoncrief}
+L. Andersson and V. Moncrief,
+Elliptic--hyperbolic systems and the Einstein equations,
+Ann. Henri Poincar\'e \textbf{4}, 1--34 (2003).
+\url{https://arxiv.org/abs/gr-qc/0110111}.
+
+
+\bibitem{Ebin}
+D. G. Ebin, The manifold of Riemannian metrics, in Global Analysis,
+Proc. Sympos. Pure Math. \textbf{15}, 11--40 (1970).
+\url{https://users.math.msu.edu/users/parker/993/Ebin.pdf}.
+
+\bibitem{MarsdenWeinstein}
+J. Marsden and A. Weinstein, Reduction of symplectic manifolds with symmetry,
+Rep. Math. Phys. \textbf{5}, 121--130 (1974).
+\url{https://www.cds.caltech.edu/~marsden/bib/1974/01-MaWe1974/MaWe1974.pdf}.
+
+\bibitem{Seeley}
+R. T. Seeley, Complex powers of an elliptic operator,
+Proc. Sympos. Pure Math. \textbf{10}, 288--307 (1967).
+
+\bibitem{Taylor}
+M. E. Taylor, \textit{Pseudodifferential Operators and Nonlinear PDE},
+Progress in Mathematics \textbf{100}, Birkh\"auser (1991).
+\url{https://www.math.unc.edu/Faculty/met/}.
+
+\bibitem{Kato}
+T. Kato, Quasi-linear equations of evolution, with applications to partial
+differential equations, Lecture Notes in Math. \textbf{448}, 25--70 (1975);
+see also Abstract evolution equations, linear and quasilinear, revisited,
+Lecture Notes in Math. \textbf{1540}, 103--125 (1993).
+\url{https://doi.org/10.1007/BFb0085477}.
+
+\bibitem{BonaSmith}
+J. L. Bona and R. Smith, The initial-value problem for the Korteweg--de Vries
+equation, Philos. Trans. R. Soc. Lond. A \textbf{278}, 555--601 (1975).
+\url{https://doi.org/10.1098/rsta.1975.0035}.
+
+\bibitem{IfrimTataru}
+M. Ifrim and D. Tataru, Local well-posedness for quasilinear problems: a
+primer (2020). \url{https://arxiv.org/abs/2008.05684}.
+
+\bibitem{Feola2023}
+R. Feola, F. Giuliani, F. Iandoli, and J. E. Massetti,
+Local well posedness for a system of quasilinear PDEs modelling suspension
+bridges (2023). \url{https://arxiv.org/abs/2306.11037}.
+\bibitem{MaBertschinger1995}
+C.-P. Ma and E. Bertschinger, Cosmological perturbation theory in the
+synchronous and conformal Newtonian gauges, Astrophys. J. \textbf{455},
+7--25 (1995). \url{https://doi.org/10.1086/176550}
+
+\bibitem{Bellorin2024}
+J. Bellor\'in, C. B\'orquez, and B. Droguett,
+Renormalization of the nonprojectable Ho\v rava theory,
+Phys. Rev. D \textbf{110}, 084020 (2024).
+\url{https://doi.org/10.1103/PhysRevD.110.084020}
+
+\end{thebibliography}
+\section*{Data availability}
+The reproducibility archive supplies this revision's scripts, exact-check reports, numerical data and LaTeX sources. The nonlinear Hadamard theorem is an analytic result and does not depend on floating-point scans; Appendix O records its proof ledger and exact representative rolling point. The project repository is \href{https://github.com/mauromontenegro333/Space-Clock-Field-Theory-A}{SCFT-A on GitHub}; the integrated revision has not been uploaded there.
+
+\end{document}
