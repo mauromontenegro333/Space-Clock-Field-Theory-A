@@ -1,0 +1,35 @@
+{
+  "coefficient_point": "SCFT-A scale-separated revision, 2026-09-08",
+  "exact_parameters": {
+    "kappa_m_over_Hd2": "10^30",
+    "delta": "1/10^140",
+    "sigma": "1/10^6",
+    "s_N": "10",
+    "a0_over_Hd": "1"
+  },
+  "max_sampled_response": 1.0011357323900973,
+  "max_refinement_difference": 1.6975908959798724e-11,
+  "max_slip_residual": 7.860465750519907e-19,
+  "min_canonical_denominator": 1.792669897832447,
+  "max_background_scaled_residual": 5.028079805054185e-13,
+  "independent_integrators": [
+    {
+      "k_over_Hd": 0.03,
+      "channel_scaled_difference": 1.5400678779128874e-12
+    },
+    {
+      "k_over_Hd": 10.0,
+      "channel_scaled_difference": 2.3641462051915418e-14
+    },
+    {
+      "k_over_Hd": 1000.0,
+      "channel_scaled_difference": 2.560196178444286e-13
+    }
+  ],
+  "tail_FE_over_kappa": 4.429866605156511,
+  "tail_KE_over_kappa": 0.8370916680467161,
+  "tau6_Hd4_exact": "1/10^340",
+  "tau6_storage": "numpy.longdouble; positive, with extended exponent range",
+  "precision_note": "ODE updates are binary64. For 1<=a<=10 and k/Hd<=1000, 3*tau6*p^4 <= 3e-328; its effects are below binary64 update resolution. Exact high-momentum statements are symbolic, not inferred from this scan.",
+  "scope": "Finite-grid numerical approximations; exact proofs and interval bounds are in the other reports."
+}

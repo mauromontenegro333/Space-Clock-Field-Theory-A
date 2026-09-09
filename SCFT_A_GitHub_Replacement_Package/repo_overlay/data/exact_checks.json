@@ -1,0 +1,44 @@
+{
+  "all_passed": true,
+  "checks": {
+    "lapse_constraint": true,
+    "shift_constraint": true,
+    "auxiliary_determinant": true,
+    "reduced_action": true,
+    "endpoint_denominator": true,
+    "endpoint_kinetic": true,
+    "endpoint_positive_polynomial": true,
+    "endpoint_small_delta": true,
+    "endpoint_kinetic_dissipation": true,
+    "endpoint_restoring_monotonicity": true,
+    "local_polynomial_both_switches": true,
+    "unbraided_charge_propagation": true,
+    "unbraided_friedmann_propagation": true,
+    "contracting_clock_response": true,
+    "stationary_scale_margin": true,
+    "complete_ideal_fluid_cubic_density": true
+  },
+  "endpoint": {
+    "K": "(500*c*x + 224*c + 375*delta*x**2 - 12*delta*x)/(180*c + 125*delta*x**2 + 371*delta*x)",
+    "V_numerator": "86400*c**4*x + 660000*c**3*delta*x**3 + 531360*c**3*delta*x**2 + 410400*c**3*x**2 + 377000*c**2*delta**2*x**4 + 394736*c**2*delta**2*x**3 + 1035000*c**2*delta*x**4 + 1954560*c**2*delta*x**3 + 540000*c*delta**3*x**5 + 1602720*c*delta**3*x**4 + 312500*c*delta**2*x**6 + 1763250*c*delta**2*x**5 + 1924006*c*delta**2*x**4 + 22500*c*delta*x**5 + 187500*delta**4*x**7 + 1113000*delta**4*x**6 + 1651692*delta**4*x**5 + 15625*delta**2*x**7 + 46375*delta**2*x**6",
+    "V_denominator": "4*c**2*(180*c + 125*delta*x**2 + 371*delta*x)**2",
+    "dV_numerator": "15552000*c**5 + 324000000*c**4*delta*x**2 + 159235200*c**4*delta*x + 147744000*c**4*x - 82500000*c**3*delta**2*x**4 + 383460000*c**3*delta**2*x**3 + 213157440*c**3*delta**2*x**2 + 642600000*c**3*delta*x**3 + 1055462400*c**3*delta*x**2 + 716392000*c**2*delta**3*x**4 + 1300405456*c**2*delta**3*x**3 + 337500000*c**2*delta**2*x**5 + 2110575000*c**2*delta**2*x**4 + 2110426080*c**2*delta**2*x**3 + 20250000*c**2*delta*x**4 + 303750000*c*delta**4*x**6 + 1803060000*c*delta**4*x**5 + 2675741040*c*delta**4*x**4 + 78125000*c*delta**3*x**7 + 684156250*c*delta**3*x**6 + 1962497250*c*delta**3*x**5 + 1427612452*c*delta**3*x**4 + 22500000*c*delta**2*x**6 + 75127500*c*delta**2*x**5 + 70312500*delta**5*x**8 + 626062500*delta**5*x**7 + 1858153500*delta**5*x**6 + 1838333196*delta**5*x**5 + 5859375*delta**3*x**8 + 40578125*delta**3*x**7 + 68820500*delta**3*x**6",
+    "dV_denominator": "4*c**2*(180*c + 125*delta*x**2 + 371*delta*x)**3",
+    "kinetic_dissipation_numerator": "180000*c**2*x + 120960*c**2 + 250000*c*delta*x**3 + 764000*c*delta*x**2 + 328096*c*delta*x + 140625*delta**2*x**4 + 272250*delta**2*x**3 - 13356*delta**2*x**2",
+    "kinetic_dissipation_denominator": "(180*c + 125*delta*x**2 + 371*delta*x)**2"
+  },
+  "stationary": {
+    "Hd_L": "1/1000000",
+    "s": "1/100",
+    "mu": "1000101/101000101",
+    "second_derivative_ratio": "1/200000000000000000",
+    "sixth_derivative_ratio": "1/10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "relative_correction_bound": "66660066660000000277750277750000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003333003333/100010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "relative_correction_certified_upper": "1/10^14"
+  },
+  "limitations": [
+    "Does not prove nonlinear PDE well posedness",
+    "Does not compute a complete quantum cutoff",
+    "Does not construct a galaxy matched to the cosmological clock"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "all_passed": true,
+  "checks": {
+    "target_mean_lower": true,
+    "target_mean_upper": true,
+    "bump_normalization_lower": true,
+    "bump_normalization_upper": true,
+    "inner_log_slope": true,
+    "inner_log_curvature": true,
+    "inner_ratio": true,
+    "inner_am_margin": true,
+    "compact_h_lower": true,
+    "inner_d0_lower": true,
+    "inner_d1_lower": true,
+    "compact_bump_log_slope": true,
+    "compact_ramp_log_slope": true,
+    "ramp_start_exponential_bound": true,
+    "global_g_derivative": true,
+    "global_h_upper": true,
+    "global_m_upper": true,
+    "global_mN_upper": true,
+    "rN_upper": true,
+    "A1_upper": true,
+    "E2_upper": true,
+    "E3_upper": true,
+    "delta_unit": true,
+    "delta_inner_d0": true,
+    "delta_inner_d1": true,
+    "delta_A1": true,
+    "delta_E2": true,
+    "delta_E3": true,
+    "tip_size": true,
+    "tip_hessian": true,
+    "endpoint_kinetic": true,
+    "endpoint_energy": true,
+    "tilted_mean_interval": true
+  },
+  "tilted_mean_certificate": {
+    "boxes": 4096,
+    "precision_bits": 160,
+    "I0_ball": "[1.9e-5 +/- 5.32e-7]",
+    "I1_ball": "[5.1e-6 +/- 3.70e-8]",
+    "mean_ball": "[0.28 +/- 6.73e-3]",
+    "certified_mean_interval": [
+      "1/4",
+      "3/10"
+    ]
+  },
+  "exact_parameters": {
+    "kappa_m_over_Hd2": "10^30",
+    "delta": "1/10^140",
+    "sigma": "1/10^6",
+    "s_N": "10",
+    "a0_over_Hd": "1"
+  },
+  "certified_bounds": {
+    "theta": "(-16,0)",
+    "c": "(1,10^9)",
+    "n0": "16",
+    "h_star_lower": "1/10^22",
+    "d0_lower": "1/10^12",
+    "d1_lower": "1/10^12",
+    "A1_upper": "10^20",
+    "E2_upper": "10^20",
+    "E3_upper": "10^14"
+  },
+  "scope": "Sufficient bounds for a NEW exact coefficient point; not certification of the old numerical extremum."
+}

@@ -1,0 +1,14 @@
+object,block_or_role,order,reason
+mathscr_A_N,trace inverse,-2,uniformly elliptic second-order inverse
+delta_N_C_N,lapse inverse,-2,coercive full lapse Hessian including constants
+L_hh,reduced Hessian metric-metric,6,variation of tau_6 times squared covariant derivative of Ricci
+L_hpi,reduced Hessian metric-momentum,at most 2,auxiliary Schur blocks and lower-order canonical mixing
+L_pih,reduced Hessian momentum-metric,at most 2,formal adjoint of L_hpi
+L_pipi,reduced Hessian momentum-momentum,0,transverse DeWitt kinetic form
+S,graded exact symmetrizer,0,R^(-*) L R^(-1)
+A,graded variational generator,3,R J L R^(-1)
+F,low-frequency correction,minus infinity,smooth finite-rank spectral correction
+mathscr_K,skew-adjoint elliptic generator,3,skew part after corrected-symmetrizer conjugation
+P,positive elliptic square,6,I plus mathscr_K^* mathscr_K
+P^(r/6),Sobolev differentiator,r,complex power of positive order-six elliptic operator
+C,bounded conjugated remainder,0,symmetric defect and time derivative of the symmetrizer

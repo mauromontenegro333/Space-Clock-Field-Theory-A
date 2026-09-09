@@ -1,0 +1,14 @@
+SCFT-A CLEAN MAIN-BRANCH REPLACEMENT
+
+1. On GitHub main, keep LICENSE only.
+2. Delete all other current main-branch files/directories, especially:
+   .bootstrap-integrated/
+   .github/workflows/publish-integrated-release.yml
+   the old top-level data/results files
+   old PDFs and old metadata
+3. Extract this ZIP.
+4. Upload the CONTENTS of repo_overlay/ to the repository root.
+   Do not upload the outer repo_overlay directory as one nested folder.
+5. Leave the existing LICENSE in place.
+
+Important: the old GitHub workflow must be removed, because it is configured to reconstruct and force-publish the older integrated manuscript release on each push to main.

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use these data or scripts, cite this reproducibility package and the related SCFT-A work."
+title: "SCFT-A revised classical consistency and local nonlinear well-posedness reproducibility package"
+type: dataset
+authors:
+  - given-names: Mauro Alfonso
+    family-names: Montenegro
+version: "2026-09-09"
+date-released: 2026-09-09
+repository-code: "https://github.com/mauromontenegro333/Space-Clock-Field-Theory-A"
+keywords:
+  - Space-Clock Field Theory
+  - SCFT-A
+  - clock field
+  - modified gravity
+  - nonlinear well-posedness
+  - cosmological perturbations
+  - reproducibility
+license: CC0-1.0

@@ -1,0 +1,17 @@
+key,year,title,url,role_in_proof,nontransfer_limit
+AnderssonMoncrief,2003,Elliptic-hyperbolic systems and the Einstein equations,https://arxiv.org/abs/gr-qc/0110111,Spatial-harmonic elliptic-hyperbolic strategy and constraint propagation,Does not prove the SCFT-A sixth-order estimate
+BellorinRestuccia,2011,Consistency of the Hamiltonian formulation of the lowest-order effective action of the complete Horava theory,https://arxiv.org/abs/1106.5766,Elliptic lapse constraint in nonprojectable preferred-foliation gravity,Different action and differential order
+DonnellyJacobson,2011,Hamiltonian structure of Horava gravity,https://arxiv.org/abs/1106.2131,Second-class lapse constraint and local lapse solution,Different action and constraint coefficients
+Ebin,1970,The manifold of Riemannian metrics,https://users.math.msu.edu/users/parker/993/Ebin.pdf,Local slice for the diffeomorphism action,Does not provide the evolution energy
+MarsdenWeinstein,1974,Reduction of symplectic manifolds with symmetry,https://www.cds.caltech.edu/~marsden/bib/1974/01-MaWe1974/MaWe1974.pdf,Cotangent symplectic reduction,Abstract reduction only
+Seeley,1967,Complex powers of an elliptic operator,https://www.ams.org/books/pspum/010/,Complex powers of positive elliptic operators,Requires the SCFT-A ellipticity proved separately
+Taylor,1991,Pseudodifferential Operators and Nonlinear PDE,https://www.math.unc.edu/Faculty/met/,Sharp Garding and parameter-dependent pseudodifferential calculus,General machinery rather than an SCFT-A theorem
+Kato,1975,Quasi-linear equations of evolution with applications to partial differential equations,https://doi.org/10.1007/BFb0085477,Stable-family quasilinear construction,Requires the loss-free estimate proved in the report
+BonaSmith,1975,The initial-value problem for the Korteweg-de Vries equation,https://doi.org/10.1098/rsta.1975.0035,Top-norm continuous dependence by smoothing,Methodological precedent
+FeolaIandoli,2022,Local well-posedness for the quasi-linear Hamiltonian Schrodinger equation on tori,https://arxiv.org/abs/2003.04815,Hamiltonian removal of unbounded symmetric terms,Different equation
+Iandoli,2022,On the Cauchy problem for quasi-linear Hamiltonian KdV-type equations,https://arxiv.org/abs/2202.06710,Third-order Hamiltonian quasilinear flow,Different dimension and equation
+FeolaGiulianiIandoliMassetti,2023,Local well posedness for a system of quasilinear PDEs modelling suspension bridges,https://arxiv.org/abs/2306.11037,Adapted energy and iteration for mixed-order quasilinear PDE,Different dimension and fourth-order spatial system
+IfrimTataru,2020,Local well-posedness for quasilinear problems: a primer,https://arxiv.org/abs/2008.05684,Hadamard proof architecture and difference estimates,General methodology
+SarbachBaraussePreciadoLopez,2019,Well-posed Cauchy formulation for Einstein-aether theory,https://arxiv.org/abs/1902.05130,Comparison with well-posed preferred-frame gravity,Independent aether and second-order system
+JacobsonPulakkat,2025,On the viability of minimal Horava gravity,https://arxiv.org/abs/2508.03106,Continuation can fail at preferred-foliation singularity,Different minimal model
+Onodera,2026,Local well-posedness for fourth-order nonlinear dispersive systems on the one-dimensional torus under structural conditions,https://arxiv.org/abs/2607.06301,Recent evidence that structural cancellations are essential,Different dimension and order

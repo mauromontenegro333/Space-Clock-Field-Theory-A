@@ -1,0 +1,36 @@
+{
+  "certificate_version": 1,
+  "date_utc": "2026-09-09",
+  "exact_checks": {
+    "exact_hessian_symmetrizer_identity": "PASS",
+    "lapse_schur_sign": "PASS",
+    "metric_hessian_positive_eigenvalues": "PASS",
+    "momentum_hessian_positive_eigenvalues": "PASS",
+    "principal_frequency_multiplicities": "PASS",
+    "principal_symmetrizer_identity": "PASS",
+    "rolling_benchmark_identity_and_signs": "PASS",
+    "second_class_constraint_inverse": "PASS"
+  },
+  "machine_check_boundary": "The script certifies exact algebra and artifact integrity only. The functional-analytic proof is the TeX/PDF report and remains subject to expert mathematical review.",
+  "theorem_scope": {
+    "data_domain": "open strongly Dirac-regular component",
+    "excluded_claims": [
+      "global existence",
+      "long-time nonlinear stability",
+      "bounded-domain initial-boundary-value well-posedness",
+      "unconditional evolution for unspecified S_vis",
+      "quantum or strong-coupling control"
+    ],
+    "result": [
+      "local existence",
+      "uniqueness",
+      "continuous dependence",
+      "persistence of higher regularity",
+      "constraint propagation",
+      "continuation criterion"
+    ],
+    "sector": "vacuum gravity-clock sector of the completed SCFT-A action",
+    "spatial_domain": "compact boundaryless three-torus",
+    "topology": "H^(s+3) x H^s for integer s >= 18"
+  }
+}
